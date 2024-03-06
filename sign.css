@@ -149,14 +149,6 @@ input:focus {
 }
 
 @media (max-width: 767px) {
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    background-color: var(--gray5);
-  }
-
   main {
     padding: 120px 32px 0;
   }

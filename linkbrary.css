@@ -201,7 +201,7 @@ footer {
   line-height: normal;
 }
 
-.prPoNfaq {
+.privacyNfaq {
   display: flex;
   gap: 30px;
 }
@@ -359,12 +359,12 @@ footer {
     row-gap: 60px;
   }
 
-  .codeit2023 {
+  .copyright {
     grid-row: 2/3;
     grid-column: 1/2;
   }
 
-  .prPoNfaq {
+  .privacyNfaq {
     grid-row: 1/2;
     grid-column: 1/2;
   }
