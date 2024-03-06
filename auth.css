@@ -110,8 +110,8 @@ input:focus {
   position: relative;
 }
 
-.eye-off,
-.eye-on {
+.passEye,
+.passCheckEye {
   position: absolute;
   right: 15px;
   top: 18px;
