@@ -29,23 +29,29 @@
           </div>
         </div>
         <form>
-          <label for="email">이메일</label>
-          <input id="email" type="email" />
-          <label for="password">비밀번호</label>
-          <div class="inputEye">
-            <input id="password" type="password" />
-            <button type="button" class="eye-on">
-              <img src="landing/eye-on.svg" alt="눈이 뜨인다" />
-            </button>
+          <div class="emailContainer">
+            <label for="email">이메일</label>
+            <input id="email" type="email" />
           </div>
-          <label for="passwordcheck">비밀번호 확인</label>
-          <div class="inputEye">
-            <input id="passwordcheck" type="password" />
-            <button type="button" class="eye-on">
-              <img src="landing/eye-on.svg" alt="눈이 뜨인다" />
-            </button>
+          <div class="passwordContainer">
+            <label for="password">비밀번호</label>
+            <div class="inputEye">
+              <input id="password" type="password" />
+              <button type="button" class="eye-on">
+                <img src="landing/eye-on.svg" alt="눈이 뜨인다" />
+              </button>
+            </div>
           </div>
-          <button class="signbutton">회원가입</button>
+          <div class="passwordcheckContainer">
+            <label for="passwordcheck">비밀번호 확인</label>
+            <div class="inputEye">
+              <input id="passwordcheck" type="password" />
+              <button type="button" class="eye-on">
+                <img src="landing/eye-on.svg" alt="눈이 뜨인다" />
+              </button>
+            </div>
+          </div>
+          <button type="submit" class="signbutton">회원가입</button>
         </form>
       </div>
       <div class="socialsign">
@@ -70,5 +76,6 @@
         </div>
       </div>
     </main>
+    <script src="auth.js"></script>
   </body>
 </html>

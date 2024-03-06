@@ -133,3 +133,7 @@ button {
   overflow: visible;
   cursor: pointer;
 }
+
+:focus {
+  outline: none;
+}
