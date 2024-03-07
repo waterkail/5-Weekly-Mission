@@ -3,8 +3,6 @@ const passwordInput = document.querySelector('#password');
 const passEyeButton = document.querySelector('.passEye');
 const signButton = document.querySelector('.signbutton');
 
-let A = 0; /* 비밀번호 보이기/숨기기 함수용 변수, 좋은 변수명 구함11 */
-
 function loginEmailErrorReset() {
   document.querySelector('.giveMeEmail').classList.add('hidden');
   document.querySelector('.notEmail').classList.add('hidden');
@@ -55,8 +53,7 @@ passwordInput.addEventListener('focusout', passwordPls);
 passEyeButton.onclick = function () {
   passEyeButton.firstElementChild.classList.toggle('hidden');
   passEyeButton.lastElementChild.classList.toggle('hidden');
-  A = A + 1;
-  if (A % 2) {
+  if (passwordInput.type === 'password') {
     passwordInput.type = 'text';
   } else {
     passwordInput.type = 'password';
