@@ -32,6 +32,13 @@
           <div class="emailContainer">
             <label for="email">이메일</label>
             <input id="email" type="email" />
+            <div class="hidden caution giveMeEmail">이메일을 입력해주세요.</div>
+            <div class="hidden caution notEmail">
+              올바른 이메일 주소가 아닙니다.
+            </div>
+            <div class="hidden caution existEmail">
+              이미 사용 중인 이메일입니다.
+            </div>
           </div>
           <div class="passwordContainer">
             <label for="password">비밀번호</label>
@@ -45,6 +52,12 @@
                   alt="비밀번호 보임 상태"
                 />
               </button>
+              <div class="hidden caution giveMePassword">
+                비밀번호를 입력해 주세요.
+              </div>
+              <div class="hidden caution incorrectPassword">
+                비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요.
+              </div>
             </div>
           </div>
           <div class="passwordcheckContainer">
@@ -59,6 +72,9 @@
                   alt="비밀번호 보임 상태"
                 />
               </button>
+            </div>
+            <div class="hidden caution diffPassword">
+              비밀번호가 일치하지 않아요.
             </div>
           </div>
           <button type="submit" class="signbutton">회원가입</button>

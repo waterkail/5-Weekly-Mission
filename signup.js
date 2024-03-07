@@ -80,6 +80,7 @@ signButton.onclick = function (e) {
     document.querySelector('#password').classList.add('inputProblem');
     document.querySelector('.checkEmail').classList.remove('hidden');
     document.querySelector('#email').classList.add('inputProblem');
+    document.querySelector('#email').focus();
   }
 };
 

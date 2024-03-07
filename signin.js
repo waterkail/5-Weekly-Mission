@@ -1,12 +1,9 @@
 const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
-const passCheckInput = document.querySelector('#passwordcheck');
 const passEyeButton = document.querySelector('.passEye');
-const checkEyeButton = document.querySelector('.passCheckEye');
 const signButton = document.querySelector('.signbutton');
 
 let A = 0; /* 비밀번호 보이기/숨기기 함수용 변수, 좋은 변수명 구함11 */
-let B = 0; /* 비밀번호 확인 보이기/숨기기 함수용 변수, 좋은 변수명 구함22 */
 
 function loginEmailErrorReset() {
   document.querySelector('.giveMeEmail').classList.add('hidden');
@@ -80,17 +77,5 @@ signButton.onclick = function (e) {
     document.querySelector('#password').classList.add('inputProblem');
     document.querySelector('.checkEmail').classList.remove('hidden');
     document.querySelector('#email').classList.add('inputProblem');
-    document.querySelector('#email').focus();
   }
 };
-
-checkEyeButton.onclick = function () {
-  checkEyeButton.firstElementChild.classList.toggle('hidden');
-  checkEyeButton.lastElementChild.classList.toggle('hidden');
-  B = B + 1;
-  if (B % 2) {
-    passCheckInput.type = 'text';
-  } else {
-    passCheckInput.type = 'password';
-  }
-}; /* 비밀번호 확인 칸에서 눈을 눌러 비밀번호 보이기와 숨기기를 하게 하는 함수이자 이벤트 */
