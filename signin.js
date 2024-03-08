@@ -26,17 +26,20 @@ function isEmail(email) {
     return false;
   }
   return true;
-} /* 이메일이 맞으면 true를 뱉는 함수*/
+} /* 이메일 형식이면 true를 뱉는 함수*/
 
 const emailPls = function (e) {
   loginEmailErrorReset();
   if (emailInput.value === '') {
     document.querySelector('.giveMeEmail').classList.remove('hidden');
     document.querySelector('#email').classList.add('inputProblem');
+    return false;
   } else if (isEmail(emailInput.value) === false) {
     document.querySelector('.notEmail').classList.remove('hidden');
     document.querySelector('#email').classList.add('inputProblem');
+    return false;
   }
+  return true;
 }; /* 이메일을 입력하지 않거나 이메일 주소로 입력하지 않을 때 반응하는 함수 */
 
 const passwordPls = function (e) {
@@ -44,24 +47,13 @@ const passwordPls = function (e) {
   if (passwordInput.value === '') {
     document.querySelector('.giveMePassword').classList.remove('hidden');
     document.querySelector('#password').classList.add('inputProblem');
+    return false;
   }
+  return true;
 }; /* 비밀번호 입력하지 않으면 반응하는 함수 */
 
-emailInput.addEventListener('focusout', emailPls);
-passwordInput.addEventListener('focusout', passwordPls);
-
-passEyeButton.onclick = function () {
-  passEyeButton.firstElementChild.classList.toggle('hidden');
-  passEyeButton.lastElementChild.classList.toggle('hidden');
-  if (passwordInput.type === 'password') {
-    passwordInput.type = 'text';
-  } else {
-    passwordInput.type = 'password';
-  }
-}; /* 비밀번호 칸에서 눈을 눌러 비밀번호 보이기와 숨기기를 하게 하는 함수이자 이벤트 */
-
-signButton.onclick = function (e) {
-  e.preventDefault();
+const userCheck = function () {
+  // e.preventDefault();
   loginEmailErrorReset();
   loginPassErrorReset();
   if (
@@ -75,4 +67,32 @@ signButton.onclick = function (e) {
     document.querySelector('.checkEmail').classList.remove('hidden');
     document.querySelector('#email').classList.add('inputProblem');
   }
-};
+}; // 로그인 정보 확인용 함수
+
+const passHideShow = function () {
+  passEyeButton.firstElementChild.classList.toggle('hidden');
+  passEyeButton.lastElementChild.classList.toggle('hidden');
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+  } else {
+    passwordInput.type = 'password';
+  }
+}; /* 비밀번호 칸에서 눈을 눌러 비밀번호 보이기와 숨기기를 하게 하는 함수 */
+
+const loginCheck = function (e) {
+  e.preventDefault();
+  if (emailPls() === false) {
+    emailPls();
+    emailInput.focus();
+  } else if (passwordPls() === false) {
+    passwordPls();
+    passwordInput.focus();
+  } else {
+    userCheck();
+  }
+}; //로그인할 때 양식 및 정보 확인하는 함수
+
+emailInput.addEventListener('focusout', emailPls);
+passwordInput.addEventListener('focusout', passwordPls);
+passEyeButton.addEventListener('click', passHideShow);
+signButton.addEventListener('click', loginCheck);
