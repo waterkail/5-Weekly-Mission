@@ -68,7 +68,6 @@ label {
 input {
   display: block;
   margin-top: 12px;
-  margin-bottom: 24px;
   padding: 18px 15px;
   border: 1px solid var(--gray3);
   border-radius: 8px;
@@ -80,6 +79,30 @@ input:focus {
   outline: none;
 }
 
+.inputProblem {
+  border: 1px solid var(--red);
+}
+
+.inputProblem:focus {
+  border: 1px solid var(--red);
+  outline: 1px solid var(--red);
+}
+
+.emailContainer,
+.passwordContainer,
+.passwordcheckContainer {
+  margin-bottom: 24px;
+}
+
+.hidden {
+  display: none;
+}
+
+.caution {
+  color: var(--red);
+  padding: 3px;
+}
+
 .signbutton {
   display: block;
 }
@@ -88,11 +111,11 @@ input:focus {
   position: relative;
 }
 
-.eye-off,
-.eye-on {
+.passEye,
+.passCheckEye {
   position: absolute;
   right: 15px;
-  top: 30px;
+  top: 18px;
 }
 
 .signbutton {
@@ -149,14 +172,6 @@ input:focus {
 }
 
 @media (max-width: 767px) {
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    background-color: var(--gray5);
-  }
-
   main {
     padding: 120px 32px 0;
   }
