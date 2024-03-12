@@ -1,7 +1,7 @@
 export const emailInput = document.querySelector('#email');
 export const emailErrorMessage = document.querySelector('.emailErrorMessage');
 
-export function loginEmailErrorReset() {
+function resetLoginEmailError() {
   emailErrorMessage.classList.add('hidden');
   emailInput.classList.remove('inputError');
 } /* 로그인 - 이메일 오류 메시지를 초기화 하는 함수  */
@@ -12,8 +12,8 @@ function isThisEmail(email) {
   return emailChecker.test(email);
 } /* 이메일 형식이면 true를 뱉는 함수*/
 
-export const emailPls = function (e) {
-  loginEmailErrorReset();
+export const checkEmail = function (e) {
+  resetLoginEmailError();
   if (emailInput.value === '') {
     emailErrorMessage.classList.remove('hidden');
     emailErrorMessage.textContent = '이메일을 입력해 주세요.';

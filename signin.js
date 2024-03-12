@@ -1,20 +1,20 @@
-import { emailInput, emailPls, emailErrorMessage } from './idEmail.js';
+import { emailInput, checkEmail, emailErrorMessage } from './idEmail.js';
 import {
   passwordInput,
   passEyeButton,
-  passwordPls,
-  passHideShow,
+  checkPassword,
+  hideShowpassword,
   passwordErrorMessage,
 } from './password.js';
 
-const signButton = document.querySelector('.signbutton');
-const correctEmail = 'test@codeit.com';
-const correctPassword = 'codeit101';
+const signupButton = document.querySelector('.signbutton');
+const CORRECT_EMAIL = 'test@codeit.com';
+const CORRECT_PASSWORD = 'codeit101';
 
-const userCheck = function () {
+const checkUser = function () {
   if (
-    emailInput.value === correctEmail &&
-    passwordInput.value === correctPassword
+    emailInput.value === CORRECT_EMAIL &&
+    passwordInput.value === CORRECT_PASSWORD
   ) {
     location.href = './folder';
   } else {
@@ -27,20 +27,20 @@ const userCheck = function () {
   }
 }; // 로그인 정보 확인용 함수
 
-const loginCheck = function (e) {
+const checkLogin = function (e) {
   e.preventDefault();
-  if (emailPls() === false) {
-    emailPls();
+  if (checkEmail() === false) {
+    checkEmail();
     emailInput.focus();
-  } else if (passwordPls() === false) {
-    passwordPls();
+  } else if (checkPassword() === false) {
+    checkPassword();
     passwordInput.focus();
   } else {
-    userCheck();
+    checkUser();
   }
 }; //로그인할 때 양식 및 정보 확인하는 함수
 
-emailInput.addEventListener('focusout', emailPls);
-passwordInput.addEventListener('focusout', passwordPls);
-passEyeButton.addEventListener('click', passHideShow);
-signButton.addEventListener('click', loginCheck);
+emailInput.addEventListener('focusout', checkEmail);
+passwordInput.addEventListener('focusout', checkPassword);
+passEyeButton.addEventListener('click', hideShowpassword);
+signupButton.addEventListener('click', checkLogin);
