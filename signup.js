@@ -1,96 +1,72 @@
-const emailInput = document.querySelector('#email');
-const passwordInput = document.querySelector('#password');
-const passCheckInput = document.querySelector('#passwordcheck');
-const passEyeButton = document.querySelector('.passEye');
-const checkEyeButton = document.querySelector('.passCheckEye');
-const signButton = document.querySelector('.signbutton');
+import { emailInput, checkEmail, emailErrorMessage } from './idEmail.js';
+import {
+  passwordInput,
+  passwordCheckInput,
+  passEyeButton,
+  passCheckEyeButton,
+  hideShowpassword,
+  resetLoginPassError,
+  passwordErrorMessage,
+  passwordcheckErrorMessage,
+} from './password.js';
+import { CORRECT_EMAIL } from './usersData.js';
 
-let A = 0; /* 비밀번호 보이기/숨기기 함수용 변수, 좋은 변수명 구함11 */
-let B = 0; /* 비밀번호 확인 보이기/숨기기 함수용 변수, 좋은 변수명 구함22 */
+const signupButton = document.querySelector('.signbutton');
 
-function loginEmailErrorReset() {
-  document.querySelector('.giveMeEmail').classList.add('hidden');
-  document.querySelector('.notEmail').classList.add('hidden');
-  document.querySelector('.checkEmail').classList.add('hidden');
-  document.querySelector('#email').classList.remove('inputProblem');
-} /* 로그인 - 이메일 오류 메시지를 초기화 하는 함수  */
-
-function loginPassErrorReset() {
-  document.querySelector('.checkPassword').classList.add('hidden');
-  document.querySelector('.giveMePassword').classList.add('hidden');
-  document.querySelector('#password').classList.remove('inputProblem');
-} /* 로그인 - 비밀번호 오류 메시지를 초기화 하는 함수 */
-
-function isEmail(email) {
-  const A = email.indexOf('@');
-  if (A === -1) {
+const checkSignupEmail = function () {
+  if (emailInput.value === CORRECT_EMAIL) {
+    emailErrorMessage.classList.remove('hidden');
+    emailErrorMessage.textContent = '이미 사용중인 이메일입니다.';
+    emailInput.classList.add('inputError');
     return false;
-  } else if (email.slice(0, A).length === 0) {
-    return false;
-  } else if (email.slice(A + 1).length === 0) {
+  }
+  checkEmail();
+  return checkEmail();
+};
+
+const checkSignupPassword = function () {
+  resetLoginPassError();
+  const englishOnly = /^[a-zA-z]+$/;
+  const numberOnly = /^[\d]+$/;
+  if (
+    passwordInput.value.length < 8 ||
+    englishOnly.test(passwordInput.value) ||
+    numberOnly.test(passwordInput.value)
+  ) {
+    passwordErrorMessage.classList.remove('hidden');
+    passwordErrorMessage.textContent =
+      '비밀번호는 영문, 숫자 조합 8자 이상 입력해주세요.';
+    passwordInput.classList.add('inputError');
     return false;
   }
   return true;
-} /* 이메일이 맞으면 true를 뱉는 함수*/
+};
 
-const emailPls = function (e) {
-  loginEmailErrorReset();
-  if (emailInput.value === '') {
-    document.querySelector('.giveMeEmail').classList.remove('hidden');
-    document.querySelector('#email').classList.add('inputProblem');
-  } else if (isEmail(emailInput.value) === false) {
-    document.querySelector('.notEmail').classList.remove('hidden');
-    document.querySelector('#email').classList.add('inputProblem');
+const checkPasswordOneMore = function () {
+  passwordcheckErrorMessage.classList.add('hidden');
+  passwordCheckInput.classList.remove('inputError');
+  if (passwordInput.value !== passwordCheckInput.value) {
+    passwordcheckErrorMessage.classList.remove('hidden');
+    passwordcheckErrorMessage.textContent = '비밀번호가 일치하지 않아요.';
+    passwordCheckInput.classList.add('inputError');
+    return false;
   }
-}; /* 이메일을 입력하지 않거나 이메일 주소로 입력하지 않을 때 반응하는 함수 */
+  return true;
+};
 
-const passwordPls = function (e) {
-  loginPassErrorReset();
-  if (passwordInput.value === '') {
-    document.querySelector('.giveMePassword').classList.remove('hidden');
-    document.querySelector('#password').classList.add('inputProblem');
-  }
-}; /* 비밀번호 입력하지 않으면 반응하는 함수 */
-
-emailInput.addEventListener('focusout', emailPls);
-passwordInput.addEventListener('focusout', passwordPls);
-
-passEyeButton.onclick = function () {
-  passEyeButton.firstElementChild.classList.toggle('hidden');
-  passEyeButton.lastElementChild.classList.toggle('hidden');
-  A = A + 1;
-  if (A % 2) {
-    passwordInput.type = 'text';
-  } else {
-    passwordInput.type = 'password';
-  }
-}; /* 비밀번호 칸에서 눈을 눌러 비밀번호 보이기와 숨기기를 하게 하는 함수이자 이벤트 */
-
-signButton.onclick = function (e) {
+const checkSignup = function (e) {
   e.preventDefault();
-  loginEmailErrorReset();
-  loginPassErrorReset();
-  if (
-    emailInput.value === 'test@codeit.com' &&
-    passwordInput.value === 'codeit101'
-  ) {
+  checkSignupEmail();
+  checkSignupPassword();
+  checkPasswordOneMore();
+  if (checkSignupEmail() && checkSignupPassword() && checkPasswordOneMore()) {
     location.href = './folder';
-  } else {
-    document.querySelector('.checkPassword').classList.remove('hidden');
-    document.querySelector('#password').classList.add('inputProblem');
-    document.querySelector('.checkEmail').classList.remove('hidden');
-    document.querySelector('#email').classList.add('inputProblem');
-    document.querySelector('#email').focus();
   }
 };
 
-checkEyeButton.onclick = function () {
-  checkEyeButton.firstElementChild.classList.toggle('hidden');
-  checkEyeButton.lastElementChild.classList.toggle('hidden');
-  B = B + 1;
-  if (B % 2) {
-    passCheckInput.type = 'text';
-  } else {
-    passCheckInput.type = 'password';
-  }
-}; /* 비밀번호 확인 칸에서 눈을 눌러 비밀번호 보이기와 숨기기를 하게 하는 함수이자 이벤트 */
+emailInput.addEventListener('focusout', checkSignupEmail);
+passwordInput.addEventListener('focusout', checkSignupPassword);
+passwordCheckInput.addEventListener('focusout', checkPasswordOneMore);
+passEyeButton.addEventListener('click', hideShowpassword);
+passCheckEyeButton.addEventListener('click', hideShowpassword);
+signupButton.addEventListener('click', checkSignup);

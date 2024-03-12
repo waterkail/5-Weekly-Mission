@@ -8,7 +8,6 @@ function resetLoginEmailError() {
 
 function isThisEmail(email) {
   const emailChecker = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
-  console.log(emailChecker.test(email));
   return emailChecker.test(email);
 } /* 이메일 형식이면 true를 뱉는 함수*/
 

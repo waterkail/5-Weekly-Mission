@@ -6,10 +6,9 @@ import {
   hideShowpassword,
   passwordErrorMessage,
 } from './password.js';
+import { CORRECT_EMAIL, CORRECT_PASSWORD } from './usersData.js';
 
 const signinButton = document.querySelector('.signbutton');
-const CORRECT_EMAIL = 'test@codeit.com';
-const CORRECT_PASSWORD = 'codeit101';
 
 const checkUser = function () {
   if (
