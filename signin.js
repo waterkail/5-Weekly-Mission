@@ -7,7 +7,7 @@ import {
   passwordErrorMessage,
 } from './password.js';
 
-const signupButton = document.querySelector('.signbutton');
+const signinButton = document.querySelector('.signbutton');
 const CORRECT_EMAIL = 'test@codeit.com';
 const CORRECT_PASSWORD = 'codeit101';
 
@@ -43,4 +43,4 @@ const checkLogin = function (e) {
 emailInput.addEventListener('focusout', checkEmail);
 passwordInput.addEventListener('focusout', checkPassword);
 passEyeButton.addEventListener('click', hideShowpassword);
-signupButton.addEventListener('click', checkLogin);
+signinButton.addEventListener('click', checkLogin);
