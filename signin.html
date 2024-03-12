@@ -32,7 +32,9 @@
           <div class="emailContainer">
             <label for="email">이메일</label>
             <input id="email" name="email" type="email" />
-            <div class="hidden caution giveMeEmail">이메일을 입력해주세요.</div>
+            <div class="hidden caution emailErrorMessage">
+              이메일을 입력해주세요.
+            </div>
             <div class="hidden caution notEmail">
               올바른 이메일 주소가 아닙니다.
             </div>
@@ -51,7 +53,7 @@
                 />
               </button>
             </div>
-            <div class="hidden caution giveMePassword">
+            <div class="hidden caution passwordErrorMessage">
               비밀번호를 입력해 주세요.
             </div>
             <div class="hidden caution checkPassword">

@@ -4,14 +4,14 @@ export const passEyeButton = document.querySelector('.passEye');
 function loginPassErrorReset() {
   document.querySelector('.checkPassword').classList.add('hidden');
   document.querySelector('.giveMePassword').classList.add('hidden');
-  document.querySelector('#password').classList.remove('inputProblem');
+  document.querySelector('#password').classList.remove('inputError');
 } /* 로그인 - 비밀번호 오류 메시지를 초기화 하는 함수 */
 
 export const passwordPls = function (e) {
   loginPassErrorReset();
   if (passwordInput.value === '') {
     document.querySelector('.giveMePassword').classList.remove('hidden');
-    document.querySelector('#password').classList.add('inputProblem');
+    document.querySelector('#password').classList.add('inputError');
     return false;
   }
   return true;

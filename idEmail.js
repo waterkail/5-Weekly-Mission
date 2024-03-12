@@ -4,7 +4,7 @@ export function loginEmailErrorReset() {
   document.querySelector('.giveMeEmail').classList.add('hidden');
   document.querySelector('.notEmail').classList.add('hidden');
   document.querySelector('.checkEmail').classList.add('hidden');
-  emailInput.classList.remove('inputProblem');
+  emailInput.classList.remove('inputError');
 } /* 로그인 - 이메일 오류 메시지를 초기화 하는 함수  */
 
 function isEmail(email) {
@@ -27,11 +27,11 @@ export const emailPls = function (e) {
   loginEmailErrorReset();
   if (emailInput.value === '') {
     document.querySelector('.giveMeEmail').classList.remove('hidden');
-    emailInput.classList.add('inputProblem');
+    emailInput.classList.add('inputError');
     return false;
   } else if (isEmail(emailInput.value) === false) {
     document.querySelector('.notEmail').classList.remove('hidden');
-    emailInput.classList.add('inputProblem');
+    emailInput.classList.add('inputError');
     return false;
   }
   return true;

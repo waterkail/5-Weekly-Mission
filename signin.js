@@ -16,9 +16,9 @@ const userCheck = function () {
     location.href = './folder';
   } else {
     document.querySelector('.checkPassword').classList.remove('hidden');
-    passwordInput.classList.add('inputProblem');
+    passwordInput.classList.add('inputError');
     document.querySelector('.checkEmail').classList.remove('hidden');
-    emailInput.classList.add('inputProblem');
+    emailInput.classList.add('inputError');
   }
 }; // 로그인 정보 확인용 함수
 

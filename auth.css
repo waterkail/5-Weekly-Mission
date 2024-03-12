@@ -79,11 +79,11 @@ input:focus {
   outline: none;
 }
 
-.inputProblem {
+.inputError {
   border: 1px solid var(--red);
 }
 
-.inputProblem:focus {
+.inputError:focus {
   border: 1px solid var(--red);
   outline: 1px solid var(--red);
 }
