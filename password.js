@@ -1,16 +1,19 @@
 export const passwordInput = document.querySelector('#password');
 export const passEyeButton = document.querySelector('.passEye');
+export const passwordErrorMessage = document.querySelector(
+  '.passwordErrorMessage'
+);
 
 function loginPassErrorReset() {
-  document.querySelector('.checkPassword').classList.add('hidden');
-  document.querySelector('.giveMePassword').classList.add('hidden');
+  passwordErrorMessage.classList.add('hidden');
   document.querySelector('#password').classList.remove('inputError');
 } /* 로그인 - 비밀번호 오류 메시지를 초기화 하는 함수 */
 
 export const passwordPls = function (e) {
   loginPassErrorReset();
   if (passwordInput.value === '') {
-    document.querySelector('.giveMePassword').classList.remove('hidden');
+    passwordErrorMessage.classList.remove('hidden');
+    passwordErrorMessage.textContent = '비밀번호를 입력해 주세요.';
     document.querySelector('#password').classList.add('inputError');
     return false;
   }

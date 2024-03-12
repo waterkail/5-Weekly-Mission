@@ -1,23 +1,28 @@
-import { emailInput, emailPls } from './idEmail.js';
+import { emailInput, emailPls, emailErrorMessage } from './idEmail.js';
 import {
   passwordInput,
   passEyeButton,
   passwordPls,
   passHideShow,
+  passwordErrorMessage,
 } from './password.js';
 
 const signButton = document.querySelector('.signbutton');
+const correctEmail = 'test@codeit.com';
+const correctPassword = 'codeit101';
 
 const userCheck = function () {
   if (
-    emailInput.value === 'test@codeit.com' &&
-    passwordInput.value === 'codeit101'
+    emailInput.value === correctEmail &&
+    passwordInput.value === correctPassword
   ) {
     location.href = './folder';
   } else {
-    document.querySelector('.checkPassword').classList.remove('hidden');
+    passwordErrorMessage.classList.remove('hidden');
+    passwordErrorMessage.textContent = '비밀번호를 확인해주세요.';
     passwordInput.classList.add('inputError');
-    document.querySelector('.checkEmail').classList.remove('hidden');
+    emailErrorMessage.classList.remove('hidden');
+    emailErrorMessage.textContent = '이메일을 확인해주세요.';
     emailInput.classList.add('inputError');
   }
 }; // 로그인 정보 확인용 함수
