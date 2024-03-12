@@ -7,19 +7,9 @@ export function loginEmailErrorReset() {
 } /* 로그인 - 이메일 오류 메시지를 초기화 하는 함수  */
 
 function isThisEmail(email) {
-  const A = email.indexOf('@');
-  const B = email.indexOf('.');
-  if (
-    A === -1 ||
-    email.slice(0, A).length === 0 ||
-    email.slice(A + 1).length === 0 ||
-    B === -1 ||
-    B < A ||
-    email.slice(B + 1).length === 0
-  ) {
-    return false;
-  }
-  return true;
+  const emailChecker = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
+  console.log(emailChecker.test(email));
+  return emailChecker.test(email);
 } /* 이메일 형식이면 true를 뱉는 함수*/
 
 export const emailPls = function (e) {
