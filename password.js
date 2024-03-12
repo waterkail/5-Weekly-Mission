@@ -26,11 +26,11 @@ export const checkPassword = function (e) {
 }; /* 비밀번호 입력하지 않으면 반응하는 함수 */
 
 export const hideShowpassword = function (e) {
-  e.target.parentElement.firstElementChild.classList.toggle('hidden');
-  e.target.parentElement.lastElementChild.classList.toggle('hidden');
-  if (e.target.parentElement.previousElementSibling.type === 'password') {
-    e.target.parentElement.previousElementSibling.type = 'text';
+  this.firstElementChild.classList.toggle('hidden');
+  this.lastElementChild.classList.toggle('hidden');
+  if (this.previousElementSibling.type === 'password') {
+    this.previousElementSibling.type = 'text';
   } else {
-    e.target.parentElement.previousElementSibling.type = 'password';
+    this.previousElementSibling.type = 'password';
   }
 }; /* 비밀번호 칸에서 눈을 눌러 비밀번호 보이기와 숨기기를 하게 하는 함수 */
