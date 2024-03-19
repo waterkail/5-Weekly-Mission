@@ -1,41 +1,45 @@
-import { emailInput, emailPls } from './idEmail.js';
+import { emailInput, checkEmail, emailErrorMessage } from './idEmail.js';
 import {
   passwordInput,
   passEyeButton,
-  passwordPls,
-  passHideShow,
+  checkPassword,
+  hideShowpassword,
+  passwordErrorMessage,
 } from './password.js';
+import { CORRECT_EMAIL, CORRECT_PASSWORD } from './usersData.js';
 
-const signButton = document.querySelector('.signbutton');
+const signinButton = document.querySelector('.signbutton');
 
-const userCheck = function () {
+const checkUser = function () {
   if (
-    emailInput.value === 'test@codeit.com' &&
-    passwordInput.value === 'codeit101'
+    emailInput.value === CORRECT_EMAIL &&
+    passwordInput.value === CORRECT_PASSWORD
   ) {
     location.href = './folder';
   } else {
-    document.querySelector('.checkPassword').classList.remove('hidden');
-    passwordInput.classList.add('inputProblem');
-    document.querySelector('.checkEmail').classList.remove('hidden');
-    emailInput.classList.add('inputProblem');
+    passwordErrorMessage.classList.remove('hidden');
+    passwordErrorMessage.textContent = '비밀번호를 확인해주세요.';
+    passwordInput.classList.add('inputError');
+    emailErrorMessage.classList.remove('hidden');
+    emailErrorMessage.textContent = '이메일을 확인해주세요.';
+    emailInput.classList.add('inputError');
   }
 }; // 로그인 정보 확인용 함수
 
-const loginCheck = function (e) {
+const checkLogin = function (e) {
   e.preventDefault();
-  if (emailPls() === false) {
-    emailPls();
+  if (checkEmail() === false) {
+    checkEmail();
     emailInput.focus();
-  } else if (passwordPls() === false) {
-    passwordPls();
+  } else if (checkPassword() === false) {
+    checkPassword();
     passwordInput.focus();
   } else {
-    userCheck();
+    checkUser();
   }
 }; //로그인할 때 양식 및 정보 확인하는 함수
 
-emailInput.addEventListener('focusout', emailPls);
-passwordInput.addEventListener('focusout', passwordPls);
-passEyeButton.addEventListener('click', passHideShow);
-signButton.addEventListener('click', loginCheck);
+emailInput.addEventListener('focusout', checkEmail);
+passwordInput.addEventListener('focusout', checkPassword);
+passEyeButton.addEventListener('click', hideShowpassword);
+signinButton.addEventListener('click', checkLogin);
