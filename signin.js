@@ -29,11 +29,7 @@ const checkUser = function () {
 const checkLogin = function (e) {
   e.preventDefault();
   if (checkEmail() === false) {
-    checkEmail();
-    emailInput.focus();
   } else if (checkPassword() === false) {
-    checkPassword();
-    passwordInput.focus();
   } else {
     checkUser();
   }

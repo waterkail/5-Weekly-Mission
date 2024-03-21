@@ -20,7 +20,6 @@ const checkSignupEmail = function () {
     emailInput.classList.add('inputError');
     return false;
   }
-  checkEmail();
   return checkEmail();
 };
 
