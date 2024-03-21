@@ -9,7 +9,7 @@ export const passwordcheckErrorMessage = document.querySelector(
   '.passwordcheckErrorMessage'
 );
 
-const PASS_ERROR_ENTER = '비밀번호를 입력해 주세요.';
+const PASS_ENTER_ERROR = '비밀번호를 입력해 주세요.';
 
 export function resetLoginPassError() {
   passwordErrorMessage.classList.add('hidden');
@@ -20,7 +20,7 @@ export const checkPassword = function (e) {
   resetLoginPassError();
   if (passwordInput.value === '') {
     passwordErrorMessage.classList.remove('hidden');
-    passwordErrorMessage.textContent = PASS_ERROR_ENTER;
+    passwordErrorMessage.textContent = PASS_ENTER_ERROR;
     document.querySelector('#password').classList.add('inputError');
     return false;
   }

@@ -9,7 +9,7 @@ import {
   passwordErrorMessage,
   passwordcheckErrorMessage,
 } from './password.js';
-import { CORRECT_EMAIL } from './usersData.js';
+import { BASE_AUTH_URL } from './baseUrls.js';
 
 const USED_EMAIL_ERROR = '이미 사용중인 이메일입니다.';
 const PASS_FORMAT_ERROR = '비밀번호는 영문, 숫자 조합 8자 이상 입력해주세요.';
@@ -17,14 +17,34 @@ const PASS_MATCH_ERROR = '비밀번호가 일치하지 않아요.';
 
 const signupButton = document.querySelector('.signbutton');
 
-const checkSignupEmail = function () {
-  if (emailInput.value === CORRECT_EMAIL) {
+const checkSignUpToken = function () {
+  const userToken = localStorage.getItem('signUpToken');
+  if (userToken) {
+    location.href = './folder';
+  }
+};
+
+const checkSignupEmail = async function () {
+  try {
+    const response = await fetch(`${BASE_AUTH_URL}/check-email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: `${emailInput.value}`,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error('오류가 발생했습니다. 아쉽게되었네요');
+    }
+    return checkEmail();
+  } catch (err) {
     emailErrorMessage.classList.remove('hidden');
     emailErrorMessage.textContent = USED_EMAIL_ERROR;
     emailInput.classList.add('inputError');
     return false;
   }
-  return checkEmail();
 };
 
 const checkSignupPassword = function () {
@@ -56,16 +76,34 @@ const checkPasswordOneMore = function () {
   return true;
 };
 
-const checkSignup = function (e) {
+const checkSignup = async function (e) {
   e.preventDefault();
-  checkSignupEmail();
-  checkSignupPassword();
-  checkPasswordOneMore();
   if (checkSignupEmail() && checkSignupPassword() && checkPasswordOneMore()) {
-    location.href = './folder';
+    try {
+      const response = await fetch(`${BASE_AUTH_URL}/sign-up`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: `${emailInput.value}`,
+          password: `${passwordInput.value}`,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error('회원가입 에러입니다.');
+      }
+      const result = await response.json();
+      const signUpToken = result.data.accessToken;
+      localStorage.setItem('signUpToken', signUpToken);
+      location.href = './folder';
+    } catch (err) {
+      alert(err);
+    }
   }
 };
 
+checkSignUpToken();
 emailInput.addEventListener('focusout', checkSignupEmail);
 passwordInput.addEventListener('focusout', checkSignupPassword);
 passwordCheckInput.addEventListener('focusout', checkPasswordOneMore);
