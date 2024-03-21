@@ -8,6 +8,9 @@ import {
 } from './password.js';
 import { CORRECT_EMAIL, CORRECT_PASSWORD } from './usersData.js';
 
+const EMAIL_CHECK_ERROR = '이메일을 확인해주세요.';
+const PASS_CHECK_ERROR = '비밀번호를 확인해주세요.';
+
 const signinButton = document.querySelector('.signbutton');
 
 const checkUser = function () {
@@ -18,10 +21,10 @@ const checkUser = function () {
     location.href = './folder';
   } else {
     passwordErrorMessage.classList.remove('hidden');
-    passwordErrorMessage.textContent = '비밀번호를 확인해주세요.';
+    passwordErrorMessage.textContent = PASS_CHECK_ERROR;
     passwordInput.classList.add('inputError');
     emailErrorMessage.classList.remove('hidden');
-    emailErrorMessage.textContent = '이메일을 확인해주세요.';
+    emailErrorMessage.textContent = EMAIL_CHECK_ERROR;
     emailInput.classList.add('inputError');
   }
 }; // 로그인 정보 확인용 함수

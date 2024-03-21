@@ -11,12 +11,16 @@ import {
 } from './password.js';
 import { CORRECT_EMAIL } from './usersData.js';
 
+const USED_EMAIL_ERROR = '이미 사용중인 이메일입니다.';
+const PASS_FORMAT_ERROR = '비밀번호는 영문, 숫자 조합 8자 이상 입력해주세요.';
+const PASS_MATCH_ERROR = '비밀번호가 일치하지 않아요.';
+
 const signupButton = document.querySelector('.signbutton');
 
 const checkSignupEmail = function () {
   if (emailInput.value === CORRECT_EMAIL) {
     emailErrorMessage.classList.remove('hidden');
-    emailErrorMessage.textContent = '이미 사용중인 이메일입니다.';
+    emailErrorMessage.textContent = USED_EMAIL_ERROR;
     emailInput.classList.add('inputError');
     return false;
   }
@@ -33,8 +37,7 @@ const checkSignupPassword = function () {
     numberOnly.test(passwordInput.value)
   ) {
     passwordErrorMessage.classList.remove('hidden');
-    passwordErrorMessage.textContent =
-      '비밀번호는 영문, 숫자 조합 8자 이상 입력해주세요.';
+    passwordErrorMessage.textContent = PASS_FORMAT_ERROR;
     passwordInput.classList.add('inputError');
     return false;
   }
@@ -46,7 +49,7 @@ const checkPasswordOneMore = function () {
   passwordCheckInput.classList.remove('inputError');
   if (passwordInput.value !== passwordCheckInput.value) {
     passwordcheckErrorMessage.classList.remove('hidden');
-    passwordcheckErrorMessage.textContent = '비밀번호가 일치하지 않아요.';
+    passwordcheckErrorMessage.textContent = PASS_MATCH_ERROR;
     passwordCheckInput.classList.add('inputError');
     return false;
   }
