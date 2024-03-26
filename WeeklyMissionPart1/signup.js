@@ -9,16 +9,16 @@ import {
   passwordErrorMessage,
   passwordcheckErrorMessage,
 } from './password.js';
-import { BASE_AUTH_URL } from './baseUrls.js';
+import { SIGN_UP_TOKKEN, signUpApi, tryEmailCheck } from './Api.js';
 
 const USED_EMAIL_ERROR = '이미 사용중인 이메일입니다.';
 const PASS_FORMAT_ERROR = '비밀번호는 영문, 숫자 조합 8자 이상 입력해주세요.';
 const PASS_MATCH_ERROR = '비밀번호가 일치하지 않아요.';
 
-const signupButton = document.querySelector('.signbutton');
+const signupButton = document.querySelector('#signupbutton');
 
 const checkSignUpToken = function () {
-  const userToken = localStorage.getItem('signUpToken');
+  const userToken = localStorage.getItem(SIGN_UP_TOKKEN);
   if (userToken) {
     location.href = './folder';
   }
@@ -26,18 +26,7 @@ const checkSignUpToken = function () {
 
 const checkSignupEmail = async function () {
   try {
-    const response = await fetch(`${BASE_AUTH_URL}/check-email`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: `${emailInput.value}`,
-      }),
-    });
-    if (!response.ok) {
-      throw new Error('오류가 발생했습니다. 아쉽게되었네요');
-    }
+    tryEmailCheck(emailInput);
     return checkEmail();
   } catch (err) {
     emailErrorMessage.classList.remove('hidden');
@@ -79,27 +68,7 @@ const checkPasswordOneMore = function () {
 const checkSignup = async function (e) {
   e.preventDefault();
   if (checkSignupEmail() && checkSignupPassword() && checkPasswordOneMore()) {
-    try {
-      const response = await fetch(`${BASE_AUTH_URL}/sign-up`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: `${emailInput.value}`,
-          password: `${passwordInput.value}`,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error('회원가입 에러입니다.');
-      }
-      const result = await response.json();
-      const signUpToken = result.data.accessToken;
-      localStorage.setItem('signUpToken', signUpToken);
-      location.href = './folder';
-    } catch (err) {
-      alert(err);
-    }
+    signUpApi(emailInput, passwordInput);
   }
 };
 

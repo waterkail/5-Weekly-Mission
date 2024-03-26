@@ -6,7 +6,7 @@ import {
   hideShowpassword,
   passwordErrorMessage,
 } from './password.js';
-import { BASE_AUTH_URL } from './baseUrls.js';
+import { tryUserCheck, LOGIN_TOKEN } from './Api.js';
 
 const EMAIL_CHECK_ERROR = '이메일을 확인해주세요.';
 const PASS_CHECK_ERROR = '비밀번호를 확인해주세요.';
@@ -14,7 +14,7 @@ const PASS_CHECK_ERROR = '비밀번호를 확인해주세요.';
 const signinButton = document.querySelector('.signbutton');
 
 const checkSignInToken = function () {
-  const userToken = localStorage.getItem('loginToken');
+  const userToken = localStorage.getItem(LOGIN_TOKEN);
   if (userToken) {
     location.href = './folder';
   }
@@ -22,24 +22,9 @@ const checkSignInToken = function () {
 
 const checkUser = async function () {
   try {
-    const response = await fetch(`${BASE_AUTH_URL}/sign-in`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: `${emailInput.value}`,
-        password: `${passwordInput.value}`,
-      }),
-    });
-    if (!response.ok) {
-      throw new Error('로그인 에러입니다.');
-    }
-    const result = await response.json();
-    const loginToken = result.data.accessToken;
-    localStorage.setItem('loginToken', loginToken);
-    location.href = './folder';
+    await tryUserCheck(emailInput, passwordInput);
   } catch (err) {
+    console.log(err);
     passwordErrorMessage.classList.remove('hidden');
     passwordErrorMessage.textContent = PASS_CHECK_ERROR;
     passwordInput.classList.add('inputError');
@@ -53,11 +38,11 @@ const checkLogin = function (e) {
   e.preventDefault();
   if (checkEmail() === false) {
     return;
-  } else if (checkPassword() === false) {
-    return;
-  } else {
-    checkUser();
   }
+  if (checkPassword() === false) {
+    return;
+  }
+  checkUser();
 }; //로그인할 때 양식 및 정보 확인하는 함수
 
 checkSignInToken();
