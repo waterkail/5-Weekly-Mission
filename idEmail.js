@@ -1,6 +1,9 @@
 export const emailInput = document.querySelector('#email');
 export const emailErrorMessage = document.querySelector('.emailErrorMessage');
 
+const EMAIL_ENTER_ERROR = '이메일을 입력해 주세요.';
+const EMAIL_FORMAT_ERROR = '올바른 이메일 주소가 아닙니다.';
+
 function resetLoginEmailError() {
   emailErrorMessage.classList.add('hidden');
   emailInput.classList.remove('inputError');
@@ -15,12 +18,12 @@ export const checkEmail = function (e) {
   resetLoginEmailError();
   if (emailInput.value === '') {
     emailErrorMessage.classList.remove('hidden');
-    emailErrorMessage.textContent = '이메일을 입력해 주세요.';
+    emailErrorMessage.textContent = EMAIL_ENTER_ERROR;
     emailInput.classList.add('inputError');
     return false;
   } else if (isThisEmail(emailInput.value) === false) {
     emailErrorMessage.classList.remove('hidden');
-    emailErrorMessage.textContent = '올바른 이메일 주소가 아닙니다.';
+    emailErrorMessage.textContent = EMAIL_FORMAT_ERROR;
     emailInput.classList.add('inputError');
     return false;
   }
