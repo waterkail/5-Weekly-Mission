@@ -20,7 +20,7 @@ function CardList({ items }) {
     <CardsList>
       {items?.map((item) => {
         return (
-          <a href={item.url} key={item.id}>
+          <a href={item.url} target="blank" key={item.id}>
             <Card item={item} />
           </a>
         );
