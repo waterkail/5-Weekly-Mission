@@ -20,18 +20,9 @@ const FooterMargin = styled.div`
 `;
 
 function App() {
-  const [userData, setUserData] = useState({
-    email: '',
-    name: '',
-    profileImageSource: '',
-  });
-  const [folderData, setFolderData] = useState({
-    name: '',
-    owner: {
-      name: '',
-      profileImageSource: '',
-    },
-  });
+  const [userData, setUserData] = useState({});
+  const [folderData, setFolderData] = useState({});
+  const [linkData, setLinkData] = useState([]);
   const [isLogIn, setIsLogIn] = useState(true);
 
   async function getData() {
@@ -42,6 +33,7 @@ function App() {
   async function getFolder() {
     const { folder } = await getFolderData();
     setFolderData(folder);
+    setLinkData(folder.links);
   }
 
   useEffect(() => {
@@ -54,20 +46,20 @@ function App() {
       <GlobalStyle />
       <Header
         isLogIn={isLogIn}
-        email={userData.email}
-        img={userData.profileImageSource}
+        email={userData?.email}
+        img={userData?.profileImageSource}
       />
       <TopMargin></TopMargin>
       {isLogIn ? (
         <Top
-          ownerName={folderData.owner.name}
-          profileImg={folderData.owner.profileImageSource}
-          folderName={folderData.name}
+          ownerName={folderData?.owner?.name}
+          profileImg={folderData?.owner?.profileImageSource}
+          folderName={folderData?.name}
         />
       ) : (
         <div>대충 로그인 해달라고 하는 내용, 따로 과제에 없어서 구현 X</div>
       )}
-      <Favorite />
+      <Favorite items={linkData} />
       <FooterMargin></FooterMargin>
       <Footer />
     </>

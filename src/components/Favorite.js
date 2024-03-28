@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import searchIcon from '../asset/Search.svg';
+import CardList from './CardList';
 
 const SEARCH_LINK = '링크를 검색해보세요';
 
@@ -35,21 +36,7 @@ const SearchIcon = styled.img`
   width: 16px;
 `;
 
-const Cards = styled.div`
-  display: grid;
-  gap: 25px 20px;
-  grid-template-columns: repeat(3, 1fr);
-
-  @media (max-width: 1123px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 767px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-`;
-
-function Favorite() {
+function Favorite({ items }) {
   return (
     <Main>
       <Content>
@@ -57,7 +44,7 @@ function Favorite() {
           <SearchIcon src={searchIcon} />
           <SearchInput placeholder={SEARCH_LINK} />
         </SearchBar>
-        <Cards></Cards>
+        <CardList items={items} />
       </Content>
     </Main>
   );

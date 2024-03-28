@@ -19,7 +19,7 @@ export async function getFolderData() {
     headers: { accept: `*/*` },
   });
   if (!response.ok) throw new Error(`폴더데이터 ${BASE_ERROR_MESSAGE}`);
-  const { folder, links } = await response.json();
+  const result = await response.json();
 
-  return { folder, links };
+  return result;
 }

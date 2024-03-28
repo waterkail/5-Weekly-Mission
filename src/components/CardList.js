@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Card from './Card';
 
-const CardsList = styled.ul`
+const CardsList = styled.div`
   display: grid;
   gap: 25px 20px;
   grid-template-columns: repeat(3, 1fr);
@@ -18,11 +18,11 @@ const CardsList = styled.ul`
 function CardList({ items }) {
   return (
     <CardsList>
-      {items.map((item) => {
+      {items?.map((item) => {
         return (
-          <li>
+          <a href={item.url} key={item.id}>
             <Card item={item} />
-          </li>
+          </a>
         );
       })}
     </CardsList>
