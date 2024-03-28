@@ -11,7 +11,7 @@ const Frame = styled.div`
   box-shadow: 2px 2px 2px rgb(0 0 0 /20%);
 
   &:hover div {
-    background-size: 105% 105%;
+    background-size: 130% 130%;
   }
 `;
 

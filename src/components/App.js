@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
     getData();
-  }, [isLogIn]);
+  }, []);
 
   return (
     <>
