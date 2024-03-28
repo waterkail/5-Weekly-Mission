@@ -6,6 +6,7 @@ import { getUserData, getFolderData } from './Api';
 import Top from './Top';
 import styled from 'styled-components';
 import Favorite from './Favorite';
+import { useData } from '../Hooks/useData';
 
 const TopMargin = styled.div`
   margin-top: 93px;
@@ -20,25 +21,17 @@ const FooterMargin = styled.div`
 `;
 
 function App() {
-  const [userData, setUserData] = useState({});
-  const [folderData, setFolderData] = useState({});
-  const [linkData, setLinkData] = useState([]);
+  const [user, getUser] = useData(getUserData);
+  const [folder, getFolder] = useData(getFolderData);
   const [isLogIn, setIsLogIn] = useState(true);
 
-  async function getData() {
-    const result = await getUserData();
-    setUserData(result);
-  }
-
-  async function getFolder() {
-    const { folder } = await getFolderData();
-    setFolderData(folder);
-    setLinkData(folder.links);
-  }
+  const getData = async () => {
+    await getUser();
+    await getFolder();
+  };
 
   useEffect(() => {
     getData();
-    getFolder();
   }, [isLogIn]);
 
   return (
@@ -46,20 +39,20 @@ function App() {
       <GlobalStyle />
       <Header
         isLogIn={isLogIn}
-        email={userData?.email}
-        img={userData?.profileImageSource}
+        email={user?.email}
+        img={user?.profileImageSource}
       />
       <TopMargin></TopMargin>
       {isLogIn ? (
         <Top
-          ownerName={folderData?.owner?.name}
-          profileImg={folderData?.owner?.profileImageSource}
-          folderName={folderData?.name}
+          ownerName={folder?.folder?.owner?.name}
+          profileImg={folder?.folder?.owner?.profileImageSource}
+          folderName={folder?.folder?.name}
         />
       ) : (
         <div>대충 로그인 해달라고 하는 내용, 따로 과제에 없어서 구현 X</div>
       )}
-      <Favorite items={linkData} />
+      <Favorite items={folder?.folder?.links} />
       <FooterMargin></FooterMargin>
       <Footer />
     </>
