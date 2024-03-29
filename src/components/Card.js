@@ -47,11 +47,15 @@ const LongAgo = styled.div`
   font-size: 13px;
 `;
 
-const Title = styled.div`
+const Title = styled.h3`
   color: #000;
   height: 19px;
   font-size: 18px;
   font-weight: bold;
+  font-family: Pretendard;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const Info = styled.div`

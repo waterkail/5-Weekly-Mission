@@ -26,13 +26,18 @@ function App() {
   const [isLogIn, setIsLogIn] = useState(true);
 
   const getData = async () => {
-    await getUser();
-    await getFolder();
+    try {
+      await getUser();
+      await getFolder();
+      setIsLogIn(true);
+    } catch (err) {
+      setIsLogIn(false);
+    }
   };
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [isLogIn]);
 
   return (
     <>
