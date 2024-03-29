@@ -7,22 +7,25 @@ const Frame = styled.div`
   border-radius: 12px;
   width: 340px;
   height: 335px;
-  overflow: hidden;
   box-shadow: 2px 2px 2px rgb(0 0 0 /20%);
 
-  &:hover div {
-    background-size: 130% 130%;
+  &:hover img {
+    transform: scale(1.3);
+    transition: transform 200ms;
   }
 `;
 
 const FolderImage = styled.div`
-  background-image: ${({ $bg }) => ($bg ? `url(${$bg})` : `url(${noImage})`)};
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #dddfff;
-  background-size: 100% 100%;
   width: 100%;
   height: 200px;
+  overflow: hidden;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    transform: scale(1);
+    transition: transform 200ms;
+  }
 `;
 
 const CardInfo = styled.div`
@@ -107,7 +110,9 @@ function Card({ item }) {
 
   return (
     <Frame>
-      <FolderImage $bg={bg}></FolderImage>
+      <FolderImage>
+        {bg ? <img src={bg} alt={title} /> : <img src={noImage} alt={title} />}
+      </FolderImage>
       <CardInfo>
         <LongAgo>{longAgo(createdAt)}</LongAgo>
         <Title>{title}</Title>
