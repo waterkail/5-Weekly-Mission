@@ -64,12 +64,12 @@ const Button = styled.button`
 `;
 
 const H1Logo = styled.h1`
-  cursor: pointer;
-
   & .linkbararyLogo {
+    width: 133px;
     height: 24px;
 
     @media (max-width: 767px) {
+      width: 89px;
       height: 16px;
     }
   }
@@ -93,10 +93,21 @@ const Profile = styled.div`
   }
 `;
 
+const PorfileImage = styled.img`
+  border-radius: 9999px;
+  border: 0px;
+`;
+
 const UserProfile = ({ email, img }) => {
   return (
     <Profile>
-      <img className="profileImg" src={img} alt="프로필 이미지" />
+      <PorfileImage
+        className="profileImg"
+        src={img}
+        alt="프로필 이미지"
+        width={28}
+        height={28}
+      />
       <span className="Span_email"> {email}</span>
     </Profile>
   );
@@ -106,9 +117,17 @@ const Header = ({ isLogIn, email, img }) => {
   return (
     <Heade>
       <HeaderContent>
-        <H1Logo>
-          <img className="linkbararyLogo" src={Logo} alt="Linkbrary" />
-        </H1Logo>
+        <a href="https://www.naver.com/" target="blank">
+          <H1Logo>
+            <img
+              className="linkbararyLogo"
+              src={Logo}
+              alt="Linkbrary"
+              width={133}
+              height={24}
+            />
+          </H1Logo>
+        </a>
         {isLogIn ? (
           <UserProfile email={email} img={img} />
         ) : (

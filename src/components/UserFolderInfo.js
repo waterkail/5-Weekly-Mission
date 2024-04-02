@@ -12,17 +12,13 @@ const Info = styled.div`
   }
 
   & .Info_nameSpan {
-    color: #000;
-    font-family: Pretendard;
-    font-size: 16px;
     line-height: 24px;
   }
 `;
 
 const FolderName = styled.h2`
-  color: #000;
-  text-align: center;
-  font-family: Pretendard;
+  margin-top: 20px;
+  height: 48px;
   font-size: 40px;
   font-weight: 600;
   line-height: normal;
@@ -32,7 +28,13 @@ const UserFolderInfo = ({ name, profileImg, folderName }) => {
   return (
     <>
       <Info>
-        <img className="Info_Img" src={profileImg} alt="유저이미지" />
+        <img
+          className="Info_Img"
+          src={profileImg}
+          alt="유저이미지"
+          height={60}
+          width={60}
+        />
         <span className="Info_nameSpan">{name}</span>
       </Info>
       <FolderName>{folderName}</FolderName>

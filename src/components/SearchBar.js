@@ -1,16 +1,23 @@
 import styled from 'styled-components';
+import searchIcon from '../asset/Search.svg';
 
 const BAR_COLOR = '#f5f5f5';
 const BAR_BORDER_RADIUS = '10px';
 
 const BarOfSearch = styled.div`
   display: flex;
-  column-gap: 10px;
   padding: 15px 16px;
   border-radius: ${BAR_BORDER_RADIUS};
   background-color: ${BAR_COLOR};
-`;
 
+  &::before {
+    content: url(${searchIcon});
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+  }
+`;
 const SearchInput = styled.input`
   width: 100%;
   background-color: ${BAR_COLOR};
@@ -19,15 +26,9 @@ const SearchInput = styled.input`
   outline: none;
 `;
 
-const SearchIcon = styled.img`
-  width: 16px;
-  height: 16px;
-`;
-
-const SearchBar = ({ palceholder, src }) => {
+const SearchBar = ({ palceholder }) => {
   return (
     <BarOfSearch>
-      <SearchIcon src={src} />
       <SearchInput placeholder={palceholder} />
     </BarOfSearch>
   );

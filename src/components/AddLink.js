@@ -19,6 +19,17 @@ const AddlinkBar = styled.div`
   align-items: center;
   box-shadow: 2px 2px 2px rgb(0 0 0 /20%);
 
+  &::before {
+    content: url(${linkIcon});
+    width: 20px;
+    height: 20px;
+
+    @media (max-width: 767px) {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
   @media (max-width: 767px) {
     margin-top: 14px;
     padding: 8px 10px;
@@ -27,11 +38,16 @@ const AddlinkBar = styled.div`
 
 const LinkInput = styled.input`
   margin-left: 12px;
+  font-size: 16px;
   flex-grow: 1;
   background-color: ${BAR_COLOR};
   border-radius: ${BAR_BORDER_RADIUS};
   border: 0px;
   outline: none;
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
 `;
 
 const AddLinkButton = styled.button`
@@ -45,26 +61,14 @@ const AddLinkButton = styled.button`
   border-radius: 8px;
   background: linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%);
   color: #f5f5f5;
-  font-family: Pretendard;
   font-size: 14px;
   font-weight: 600;
   line-height: normal;
 `;
 
-const LinkIcon = styled.img`
-  width: 20px;
-  height: 20px;
-
-  @media (max-width: 767px) {
-    width: 16px;
-    height: 16px;
-  }
-`;
-
 const AddLink = () => {
   return (
     <AddlinkBar>
-      <LinkIcon src={linkIcon} />
       <LinkInput placeholder={LinkPlaceHolder} />
       <AddLinkButton>추가하기</AddLinkButton>
     </AddlinkBar>

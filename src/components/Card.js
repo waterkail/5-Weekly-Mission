@@ -3,6 +3,19 @@ import noImage from '../asset/noImage.png';
 import star from '../asset/star.svg';
 import kebabImg from '../asset/kebab.png';
 
+const CardInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 12px;
+
+  & * {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+`;
+
 const Frame = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,12 +23,17 @@ const Frame = styled.div`
   width: 340px;
   height: 335px;
   overflow: hidden;
-  box-shadow: 2px 2px 2px rgb(0 0 0 /20%);
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
   position: relative;
 
   &:hover .FolderImage_img {
     transform: scale(1.3);
     transition: transform 200ms;
+  }
+
+  &:hover ${CardInfo} {
+    background-color: #f0f6ff;
+    transition: all 200ms;
   }
 `;
 
@@ -27,22 +45,9 @@ const FolderImage = styled.div`
   & .FolderImage_img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     transform: scale(1);
     transition: transform 200ms;
-  }
-`;
-
-const CardInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px 12px;
-
-  & * {
-    font-family: Pretendard;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 `;
 
@@ -134,21 +139,33 @@ function Card({ item }) {
   return (
     <Frame>
       <Star onClick={handleStar} type="button">
-        <img src={star} alt="즐겨찾기" />
+        <img src={star} alt="즐겨찾기" height={34} width={34} />
       </Star>
       <a href={url} target="blank">
         <FolderImage>
           {bg ? (
-            <img className="FolderImage_img" src={bg} alt={title} />
+            <img
+              className="FolderImage_img"
+              src={bg}
+              alt={title}
+              height={200}
+              width={340}
+            />
           ) : (
-            <img className="FolderImage_img" src={noImage} alt={title} />
+            <img
+              className="FolderImage_img"
+              src={noImage}
+              alt={title}
+              height={200}
+              width={340}
+            />
           )}
         </FolderImage>
         <CardInfo>
           <KebabContainer>
             <LongAgo>{longAgo(createdAt)}</LongAgo>
             <button>
-              <img src={kebabImg} alt="더보기" />
+              <img src={kebabImg} alt="더보기" height={17} width={21} />
             </button>
           </KebabContainer>
           <Title>{title}</Title>

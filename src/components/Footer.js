@@ -18,9 +18,11 @@ const Foote = styled.footer`
   align-items: center;
   flex-shrink: 0;
   background-color: ${BLACK};
+  margin-top: 60px;
 
   @media (max-width: 767px) {
     padding: 32px;
+    margin-top: 40px;
   }
 `;
 

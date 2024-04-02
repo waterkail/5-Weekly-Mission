@@ -3,24 +3,11 @@ import Footer from './Footer';
 import GlobalStyle from './GlobalStyle';
 import { useEffect, useState } from 'react';
 import { getUserData, getFolderData } from './Api';
-import Top from './Top';
-import styled from 'styled-components';
+import SubHeader from './SubHeader';
 import Favorite from './Favorite';
 import { useData } from '../Hooks/useData';
 import UserFolderInfo from './UserFolderInfo';
 import AddLink from './AddLink';
-
-const TopMargin = styled.div`
-  margin-top: 93px;
-`;
-
-const FooterMargin = styled.div`
-  margin-top: 60px;
-
-  @media (max-width: 767px) {
-    margin-top: 40px;
-  }
-`;
 
 function App() {
   const [user, getUser] = useData(getUserData);
@@ -49,9 +36,8 @@ function App() {
         email={user?.email}
         img={user?.profileImageSource}
       />
-      <TopMargin></TopMargin>
-      <Top>
-        {0 ? (
+      <SubHeader>
+        {folder?.folder?.links.length ? (
           <UserFolderInfo
             name={folder?.folder?.owner?.name}
             profileImg={folder?.folder?.owner?.profileImageSource}
@@ -60,9 +46,8 @@ function App() {
         ) : (
           <AddLink />
         )}
-      </Top>
+      </SubHeader>
       <Favorite items={folder?.folder?.links} />
-      <FooterMargin></FooterMargin>
       <Footer />
     </>
   );
