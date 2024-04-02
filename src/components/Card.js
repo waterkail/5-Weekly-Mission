@@ -64,7 +64,7 @@ const Info = styled.div`
 `;
 
 const CreatedAt = styled.div`
-  color: #333333;
+  color: #333;
   font-size: 14px;
 `;
 

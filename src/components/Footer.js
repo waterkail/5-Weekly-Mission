@@ -13,7 +13,7 @@ const Hlink = styled.a`
 const Foote = styled.footer`
   display: flex;
   height: 160px;
-  padding: 32px 104px 64px 104px;
+  padding: 32px 104px 64px;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
