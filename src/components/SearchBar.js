@@ -1,30 +1,33 @@
 import styled from 'styled-components';
 
+const BAR_COLOR = '#f5f5f5';
+const BAR_BORDER_RADIUS = '10px';
+
 const BarOfSearch = styled.div`
   display: flex;
-  gap: 10px;
+  column-gap: 10px;
   padding: 15px 16px;
-  border-radius: 10px;
-  background-color: #f5f5f5;
+  border-radius: ${BAR_BORDER_RADIUS};
+  background-color: ${BAR_COLOR};
 `;
 
 const SearchInput = styled.input`
   width: 100%;
-  background-color: #f5f5f5;
-  border-radius: 10px;
+  background-color: ${BAR_COLOR};
+  border-radius: ${BAR_BORDER_RADIUS};
   border: 0px;
   outline: none;
 `;
 
 const SearchIcon = styled.img`
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
+  width: 16px;
+  height: 16px;
 `;
 
-const SearchBar = ({ palceholder, src, size }) => {
+const SearchBar = ({ palceholder, src }) => {
   return (
     <BarOfSearch>
-      <SearchIcon src={src} size={size} />
+      <SearchIcon src={src} />
       <SearchInput placeholder={palceholder} />
     </BarOfSearch>
   );

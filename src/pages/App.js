@@ -7,8 +7,6 @@ import Top from './Top';
 import styled from 'styled-components';
 import Favorite from './Favorite';
 import { useData } from '../Hooks/useData';
-import UserFolderInfo from './UserFolderInfo';
-import AddLink from './AddLink';
 
 const TopMargin = styled.div`
   margin-top: 93px;
@@ -50,17 +48,15 @@ function App() {
         img={user?.profileImageSource}
       />
       <TopMargin></TopMargin>
-      <Top>
-        {0 ? (
-          <UserFolderInfo
-            name={folder?.folder?.owner?.name}
-            profileImg={folder?.folder?.owner?.profileImageSource}
-            folderName={folder?.folder?.name}
-          />
-        ) : (
-          <AddLink />
-        )}
-      </Top>
+      {isLogIn ? (
+        <Top
+          ownerName={folder?.folder?.owner?.name}
+          profileImg={folder?.folder?.owner?.profileImageSource}
+          folderName={folder?.folder?.name}
+        />
+      ) : (
+        <div>대충 로그인 해달라고 하는 내용, 따로 과제에 없어서 구현 X</div>
+      )}
       <Favorite items={folder?.folder?.links} />
       <FooterMargin></FooterMargin>
       <Footer />

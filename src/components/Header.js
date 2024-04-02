@@ -65,6 +65,14 @@ const Button = styled.button`
 
 const H1Logo = styled.h1`
   cursor: pointer;
+
+  & .linkbararyLogo {
+    height: 24px;
+
+    @media (max-width: 767px) {
+      height: 16px;
+    }
+  }
 `;
 
 const Profile = styled.div`
@@ -73,17 +81,23 @@ const Profile = styled.div`
   gap: 6px;
   font-size: 14px;
 
-  & img {
+  & .profileImg {
     height: 28px;
     width: 28px;
+  }
+
+  & .Span_email {
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
 `;
 
 const UserProfile = ({ email, img }) => {
   return (
     <Profile>
-      <img src={img} alt="프로필 이미지" />
-      <span> {email}</span>
+      <img className="profileImg" src={img} alt="프로필 이미지" />
+      <span className="Span_email"> {email}</span>
     </Profile>
   );
 };
@@ -93,7 +107,7 @@ const Header = ({ isLogIn, email, img }) => {
     <Heade>
       <HeaderContent>
         <H1Logo>
-          <img src={Logo} alt="Linkbrary" />
+          <img className="linkbararyLogo" src={Logo} alt="Linkbrary" />
         </H1Logo>
         {isLogIn ? (
           <UserProfile email={email} img={img} />

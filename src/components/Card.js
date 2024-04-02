@@ -9,6 +9,7 @@ const Frame = styled.div`
   border-radius: 12px;
   width: 340px;
   height: 335px;
+  overflow: hidden;
   box-shadow: 2px 2px 2px rgb(0 0 0 /20%);
   position: relative;
 

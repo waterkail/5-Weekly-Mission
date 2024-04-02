@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import searchIcon from '../asset/Search.svg';
 import CardList from './CardList';
+import searchIcon from '../asset/Search.svg';
 import SearchBar from './SearchBar';
 
 const SEARCH_LINK = '링크를 검색해보세요';
@@ -21,7 +21,7 @@ function Favorite({ items }) {
   return (
     <Main>
       <Content>
-        <SearchBar src={searchIcon} palceholder={SEARCH_LINK} size="16" />
+        <SearchBar src={searchIcon} palceholder={SEARCH_LINK} />
         <CardList items={items} />
       </Content>
     </Main>
