@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import noImage from '../asset/noImage.png';
+import star from '../asset/star.svg';
+import kebabImg from '../asset/kebab.png';
 
 const Frame = styled.div`
   display: flex;
@@ -8,8 +10,9 @@ const Frame = styled.div`
   width: 340px;
   height: 335px;
   box-shadow: 2px 2px 2px rgb(0 0 0 /20%);
+  position: relative;
 
-  &:hover img {
+  &:hover .FolderImage_img {
     transform: scale(1.3);
     transition: transform 200ms;
   }
@@ -20,7 +23,7 @@ const FolderImage = styled.div`
   height: 200px;
   overflow: hidden;
 
-  & img {
+  & .FolderImage_img {
     width: 100%;
     height: 100%;
     transform: scale(1);
@@ -34,7 +37,7 @@ const CardInfo = styled.div`
   gap: 12px;
   padding: 16px 12px;
 
-  & div {
+  & * {
     font-family: Pretendard;
     overflow: hidden;
     white-space: nowrap;
@@ -43,7 +46,7 @@ const CardInfo = styled.div`
 `;
 
 const LongAgo = styled.div`
-  color: #666666;
+  color: #666;
   font-size: 13px;
 `;
 
@@ -52,10 +55,6 @@ const Title = styled.h3`
   height: 19px;
   font-size: 18px;
   font-weight: bold;
-  font-family: Pretendard;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 `;
 
 const Info = styled.div`
@@ -68,8 +67,23 @@ const CreatedAt = styled.div`
   font-size: 14px;
 `;
 
+const Star = styled.button`
+  position: absolute;
+  z-index: 2;
+  top: 15px;
+  left: 291px;
+  height: 34px;
+  width: 34px;
+`;
+
+const KebabContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+`;
+
 function Card({ item }) {
-  const { createdAt, title, description, imageSource: bg } = item;
+  const { createdAt, title, description, imageSource: bg, url } = item;
 
   const uploadDate = (value) => {
     const date = new Date(value);
@@ -112,17 +126,35 @@ function Card({ item }) {
     return `${years} years ago`;
   }
 
+  const handleStar = (e) => {
+    console.log(e.target);
+  };
+
   return (
     <Frame>
-      <FolderImage>
-        {bg ? <img src={bg} alt={title} /> : <img src={noImage} alt={title} />}
-      </FolderImage>
-      <CardInfo>
-        <LongAgo>{longAgo(createdAt)}</LongAgo>
-        <Title>{title}</Title>
-        <Info>{description}</Info>
-        <CreatedAt>{uploadDate(createdAt)}</CreatedAt>
-      </CardInfo>
+      <Star onClick={handleStar} type="button">
+        <img src={star} alt="즐겨찾기" />
+      </Star>
+      <a href={url} target="blank">
+        <FolderImage>
+          {bg ? (
+            <img className="FolderImage_img" src={bg} alt={title} />
+          ) : (
+            <img className="FolderImage_img" src={noImage} alt={title} />
+          )}
+        </FolderImage>
+        <CardInfo>
+          <KebabContainer>
+            <LongAgo>{longAgo(createdAt)}</LongAgo>
+            <button>
+              <img src={kebabImg} alt="더보기" />
+            </button>
+          </KebabContainer>
+          <Title>{title}</Title>
+          <Info>{description}</Info>
+          <CreatedAt>{uploadDate(createdAt)}</CreatedAt>
+        </CardInfo>
+      </a>
     </Frame>
   );
 }
