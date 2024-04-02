@@ -9,7 +9,7 @@ const Container = styled.div`
   gap: 20px;
   background-color: ${GRAY5};
 
-  & h2 {
+  & .Container_folderName {
     color: #000;
     text-align: center;
     font-family: Pretendard;
@@ -27,18 +27,17 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  row-gap: 12px;
 
-  & img {
+  & .Info_Img {
     width: 60px;
+    height: 60px;
   }
 
-  & span {
+  & .Info_nameSpan {
     color: #000;
     font-family: Pretendard;
     font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 24px;
   }
 `;
@@ -46,8 +45,8 @@ const Info = styled.div`
 const UserInfo = ({ name, profileImg }) => {
   return (
     <Info>
-      <img src={profileImg} alt="유저 이미지입니다." />
-      <span>{name}</span>
+      <img className="Info_Img" src={profileImg} alt="유저이미지" />
+      <span className="Info_nameSpan">{name}</span>
     </Info>
   );
 };
@@ -56,7 +55,7 @@ const Top = ({ ownerName, profileImg, folderName }) => {
   return (
     <Container>
       <UserInfo name={ownerName} profileImg={profileImg} />
-      <h2>{folderName}</h2>
+      <h2 className="Container_folderName">{folderName}</h2>
     </Container>
   );
 };
