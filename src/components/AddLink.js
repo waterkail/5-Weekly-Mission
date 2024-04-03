@@ -17,17 +17,24 @@ const AddlinkBar = styled.div`
   background-color: ${BAR_COLOR};
   border: 1px solid ${PRIMARY};
   align-items: center;
-  box-shadow: 2px 2px 2px rgb(0 0 0 /20%);
+  overflow: hidden;
 
   &::before {
-    content: url(${linkIcon});
+    content: '';
+    background-image: url(${linkIcon});
+    background-size: cover;
     width: 20px;
     height: 20px;
+    vertical-align: middle;
 
     @media (max-width: 767px) {
       width: 16px;
       height: 16px;
     }
+  }
+
+  @media (min-width: 1200px) {
+    box-shadow: 2px 2px 2px rgb(0 0 0 /20%);
   }
 
   @media (max-width: 767px) {
@@ -44,9 +51,11 @@ const LinkInput = styled.input`
   border-radius: ${BAR_BORDER_RADIUS};
   border: 0px;
   outline: none;
+  overflow: nowrap;
 
   @media (max-width: 767px) {
     font-size: 14px;
+    margin-left: 8px;
   }
 `;
 
@@ -54,16 +63,15 @@ const AddLinkButton = styled.button`
   width: 80px;
   height: 37px;
   display: flex;
-  flex-shrink: 0;
-  padding: 10px 15px;
-  justify-content: center;
+  padding: 10px 16px;
   align-items: center;
   border-radius: 8px;
   background: linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%);
   color: #f5f5f5;
   font-size: 14px;
   font-weight: 600;
-  line-height: normal;
+  font-family: Pretendard, san-serif;
+  white-space: nowrap;
 `;
 
 const AddLink = () => {

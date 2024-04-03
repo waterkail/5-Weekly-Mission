@@ -8,14 +8,15 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${GRAY5};
+  margin-top: ${({ $headerfixed }) => ($headerfixed ? `0px` : '-93px')};
 
   @media (max-width: 767px) {
-    padding: 103px 32px 40px;
+    padding: 103px 32px 60px;
   }
 `;
 
-const SubHeader = ({ children }) => {
-  return <Container>{children}</Container>;
+const SubHeader = ({ children, headerfixed = true }) => {
+  return <Container $headerfixed={headerfixed}>{children}</Container>;
 };
 
 export default SubHeader;

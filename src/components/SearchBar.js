@@ -9,9 +9,12 @@ const BarOfSearch = styled.div`
   padding: 15px 16px;
   border-radius: ${BAR_BORDER_RADIUS};
   background-color: ${BAR_COLOR};
+  overflow: hidden;
 
   &::before {
-    content: url(${searchIcon});
+    content: '';
+    background-image: url(${searchIcon});
+    background-size: cover;
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -24,6 +27,7 @@ const SearchInput = styled.input`
   border-radius: ${BAR_BORDER_RADIUS};
   border: 0px;
   outline: none;
+  overflow: nowrap;
 `;
 
 const SearchBar = ({ palceholder }) => {

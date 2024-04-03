@@ -3,7 +3,7 @@ import Logo from '../asset/logo.svg';
 import { GRAY5 } from './color';
 
 const Heade = styled.header`
-  position: fixed;
+  position: ${({ $headerFixed }) => ($headerFixed ? `fixed` : 'static')};
   top: 0;
   left: 0;
   right: 0;
@@ -113,9 +113,9 @@ const UserProfile = ({ email, img }) => {
   );
 };
 
-const Header = ({ isLogIn, email, img }) => {
+const Header = ({ isLogIn, email, img, headerFixed }) => {
   return (
-    <Heade>
+    <Heade $headerFixed={headerFixed}>
       <HeaderContent>
         <a href="https://www.naver.com/" target="blank">
           <H1Logo>
