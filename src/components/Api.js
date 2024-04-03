@@ -25,7 +25,7 @@ export async function getFolderData() {
 }
 
 export async function getUsersData(userId) {
-  const response = await fetch(`${BASE_URL}/sample/users/${userId}`, {
+  const response = await fetch(`${BASE_URL}/users/${userId}`, {
     method: 'GET',
     headers: { accept: `*/*` },
   });

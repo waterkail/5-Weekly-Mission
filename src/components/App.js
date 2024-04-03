@@ -1,11 +1,11 @@
 import Header from './Header';
 import Footer from './Footer';
 import { useEffect, useState } from 'react';
-import { getUserData } from './Api';
+import { getUsersData } from './Api';
 import { useData } from '../Hooks/useData';
 
 function App({ children, headerFixed = true }) {
-  const [user, getUser] = useData(getUserData);
+  const [user, getUser] = useData(getUsersData, 1);
   const [isLogIn, setIsLogIn] = useState(true);
 
   const getData = async () => {
@@ -15,6 +15,7 @@ function App({ children, headerFixed = true }) {
     } catch (err) {
       setIsLogIn(false);
     }
+    console.log(user);
   };
 
   useEffect(() => {
@@ -25,8 +26,8 @@ function App({ children, headerFixed = true }) {
     <>
       <Header
         isLogIn={isLogIn}
-        email={user?.email}
-        img={user?.profileImageSource}
+        email={user?.data[0]?.email}
+        img={user?.data[0]?.image_source}
         fixed={headerFixed}
       />
       {children}
