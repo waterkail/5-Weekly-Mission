@@ -1,32 +1,39 @@
 import styled from 'styled-components';
 import MainContent from './MainContent';
+import SearchBar from './SearchBar';
+import FolderIndexBar from './FolderPage/FolderIndexBar';
+import FolderNameBar from './FolderPage/FolderNameBar';
 
 const NoLink = styled.div`
   display: flex;
-  width: 1060px;
+  width: 100%;
   height: 100px;
   padding: 41px 0px 35px;
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 1199px) {
-    margin-bottom: 1133px;
-    width: 704px;
-  }
-
   @media (max-width: 767px) {
-    margin-bottom: 844px;
-    width: 325px;
     font-size: 14px;
     line-height: normal;
   }
+`;
+
+const Frame = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 `;
 
 function Folder() {
   return (
     <>
       <MainContent>
-        <NoLink>저장된 링크가 없습니다.</NoLink>
+        <SearchBar />
+        <Frame>
+          <FolderIndexBar />
+          <FolderNameBar />
+          <NoLink>저장된 링크가 없습니다.</NoLink>
+        </Frame>
       </MainContent>
     </>
   );

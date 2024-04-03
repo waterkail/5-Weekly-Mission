@@ -6,10 +6,12 @@ const Main = styled.main`
   padding: 40px 32px;
 `;
 
-const Content = styled.article`
+const Content = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 40px;
+  width: 100%;
+  max-width: 1060px;
 `;
 
 const MainContent = ({ children }) => {

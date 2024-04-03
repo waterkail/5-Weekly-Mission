@@ -23,3 +23,36 @@ export async function getFolderData() {
 
   return result;
 }
+
+export async function getUsersData(userId) {
+  const response = await fetch(`${BASE_URL}/sample/users/${userId}`, {
+    method: 'GET',
+    headers: { accept: `*/*` },
+  });
+  if (!response.ok) throw new Error(`유저들데이터 ${BASE_ERROR_MESSAGE}`);
+  const result = await response.json();
+
+  return result;
+}
+
+export async function getFoldersData() {
+  const response = await fetch(`${BASE_URL}/users/1/folders`, {
+    method: 'GET',
+    headers: { accept: `*/*` },
+  });
+  if (!response.ok) throw new Error(`폴더들 ${BASE_ERROR_MESSAGE}`);
+  const result = await response.json();
+
+  return result;
+}
+
+export async function getlinksData(folderId = '') {
+  const response = await fetch(`${BASE_URL}/users/1/links?folder=${folderId}`, {
+    method: 'GET',
+    headers: { accept: `*/*` },
+  });
+  if (!response.ok) throw new Error(`폴더데이터 ${BASE_ERROR_MESSAGE}`);
+  const result = await response.json();
+
+  return result;
+}
