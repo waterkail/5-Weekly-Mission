@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PRIMARY, WHITE } from '../color';
+import { GRAY4, PRIMARY, WHITE } from '../color';
 import Add from '../../asset/add.svg';
 import AddWhite from '../../asset/addWhite.svg';
 import FolderNameBar from './FolderNameBar';
@@ -18,11 +18,24 @@ const Block = styled.button`
   border: 1px solid ${PRIMARY};
   background: #fff;
 
+  &:hover {
+    background-color: ${GRAY4};
+    transition: all 300ms ease-in-out;
+  }
+
   @media (max-width: 767px) {
     padding: 6px 10px;
     font-size: 14px;
     height: 29px;
   }
+
+  ${({ $clicked }) =>
+    $clicked &&
+    `background-color: ${PRIMARY};
+  color: ${WHITE};
+  &:hover{
+    background-color: ${PRIMARY};
+  }`}
 `;
 
 const FolderList = styled.ul`
@@ -70,7 +83,6 @@ const AddFolder = styled.button`
     border-radius: 20px;
     border: 1px solid ${WHITE};
     background: ${PRIMARY};
-    width: 130px;
 
     &::after {
       background-image: url(${AddWhite});
@@ -78,24 +90,34 @@ const AddFolder = styled.button`
   }
 `;
 
-const FolderBlock = ({ item, children }) => {
+const FolderBlock = ({ item, clicked, children }) => {
   return (
-    <Block name={item.id} type="button">
+    <Block name={item.id} $clicked={clicked} type="button">
       {children}
     </Block>
   );
 };
 
-const FolderIndex = ({ items, onClick }) => {
+const FolderIndex = ({ items, onClick, selectedId }) => {
   return (
     <FolderList onClick={onClick}>
       <li key={-1}>
-        <FolderBlock item={{ id: '-1' }}>전체</FolderBlock>
+        <FolderBlock item={{ id: '-1' }} clicked={selectedId ? false : true}>
+          전체
+        </FolderBlock>
       </li>
-      {items?.map((item) => {
+      {items?.map(function (item) {
+        let clicked;
+        if (item?.id === selectedId) {
+          clicked = true;
+        } else {
+          clicked = false;
+        }
         return (
           <li key={item?.id}>
-            <FolderBlock item={item}>{item?.name}</FolderBlock>
+            <FolderBlock item={item} clicked={clicked}>
+              {item?.name}
+            </FolderBlock>
           </li>
         );
       })}
@@ -104,10 +126,16 @@ const FolderIndex = ({ items, onClick }) => {
 };
 
 function FolderBar({ folderInfo, onClick, selectedFolder }) {
+  const selectedId = Number(selectedFolder?.id);
+
   return (
     <>
       <Bar>
-        <FolderIndex onClick={onClick} items={folderInfo?.data} />
+        <FolderIndex
+          onClick={onClick}
+          items={folderInfo?.data}
+          selectedId={selectedId}
+        />
         <AddFolder type="button">폴더 추가</AddFolder>
       </Bar>
       <FolderNameBar selectedFolder={selectedFolder} />
