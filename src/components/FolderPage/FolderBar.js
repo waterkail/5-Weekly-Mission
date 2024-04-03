@@ -1,10 +1,8 @@
-import { getFoldersData } from '../Api';
 import styled from 'styled-components';
 import { PRIMARY, WHITE } from '../color';
 import Add from '../../asset/add.svg';
 import AddWhite from '../../asset/addWhite.svg';
-import { useData } from '../../Hooks/useData';
-import { useEffect } from 'react';
+import FolderNameBar from './FolderNameBar';
 
 const Block = styled.button`
   display: flex;
@@ -44,7 +42,6 @@ const AddFolder = styled.button`
   color: ${PRIMARY};
   display: flex;
   align-items: center;
-  text-align: center;
   font-family: Pretendard;
   flex-shrink: 0;
   font-size: 16px;
@@ -65,7 +62,6 @@ const AddFolder = styled.button`
 
   @media (max-width: 767px) {
     color: ${WHITE};
-    text-align: center;
     padding: 8px 24px;
     position: absolute;
     left: 50%;
@@ -82,17 +78,24 @@ const AddFolder = styled.button`
   }
 `;
 
-const FolderBlock = ({ children }) => {
-  return <Block>{children}</Block>;
+const FolderBlock = ({ item, children }) => {
+  return (
+    <Block name={item.id} type="button">
+      {children}
+    </Block>
+  );
 };
 
-const FolderIndex = ({ items }) => {
+const FolderIndex = ({ items, onClick }) => {
   return (
-    <FolderList>
+    <FolderList onClick={onClick}>
+      <li key={-1}>
+        <FolderBlock item={{ id: '-1' }}>전체</FolderBlock>
+      </li>
       {items?.map((item) => {
         return (
           <li key={item?.id}>
-            <FolderBlock>{item?.name}</FolderBlock>
+            <FolderBlock item={item}>{item?.name}</FolderBlock>
           </li>
         );
       })}
@@ -100,27 +103,16 @@ const FolderIndex = ({ items }) => {
   );
 };
 
-function FolderIndexBar() {
-  const [folderInfo, getFolderInfo] = useData(getFoldersData);
-
-  const getData = async () => {
-    try {
-      await getFolderInfo();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
+function FolderBar({ folderInfo, onClick, selectedFolder }) {
   return (
-    <Bar>
-      <FolderIndex items={folderInfo?.data} />
-      <AddFolder>폴더 추가</AddFolder>
-    </Bar>
+    <>
+      <Bar>
+        <FolderIndex onClick={onClick} items={folderInfo?.data} />
+        <AddFolder type="button">폴더 추가</AddFolder>
+      </Bar>
+      <FolderNameBar selectedFolder={selectedFolder} />
+    </>
   );
 }
 
-export default FolderIndexBar;
+export default FolderBar;
