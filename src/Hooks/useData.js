@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-export function useData(asyncFunction, value = '') {
+export function useData(asyncFunction) {
   const [Data, setData] = useState(null);
 
-  async function getData() {
+  async function getData(value = null) {
     const result = await asyncFunction(value);
     setData(result);
   }

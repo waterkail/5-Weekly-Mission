@@ -5,17 +5,16 @@ import { getUsersData } from './Api';
 import { useData } from '../Hooks/useData';
 
 function App({ children, headerFixed = true }) {
-  const [user, getUser] = useData(getUsersData, 1);
+  const [user, getUser] = useData(getUsersData);
   const [isLogIn, setIsLogIn] = useState(true);
 
   const getData = async () => {
     try {
-      await getUser();
+      await getUser(1);
       setIsLogIn(true);
     } catch (err) {
       setIsLogIn(false);
     }
-    console.log(user);
   };
 
   useEffect(() => {

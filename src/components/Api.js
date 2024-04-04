@@ -46,11 +46,14 @@ export async function getFoldersData() {
   return result;
 }
 
-export async function getlinksData(folderId = '') {
-  const response = await fetch(`${BASE_URL}/users/1/links?folder=${folderId}`, {
-    method: 'GET',
-    headers: { accept: `*/*` },
-  });
+export async function getLinksData(folderId) {
+  const response = await fetch(
+    `${BASE_URL}/users/1/links?folderId=${folderId}`,
+    {
+      method: 'GET',
+      headers: { accept: `*/*` },
+    }
+  );
   if (!response.ok) throw new Error(`폴더데이터 ${BASE_ERROR_MESSAGE}`);
   const result = await response.json();
 

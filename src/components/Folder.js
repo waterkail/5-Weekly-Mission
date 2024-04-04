@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import MainContent from './MainContent';
 import SearchBar from './SearchBar';
 import FolderBar from './FolderPage/FolderBar';
+import FolderContents from './FolderPage/FolderContents';
 import { useData } from '../Hooks/useData';
-import { getFoldersData } from '../components/Api';
+import { getFoldersData, getLinksData } from '../components/Api';
 import { useEffect, useState } from 'react';
 
 const NoLink = styled.div`
@@ -13,6 +14,7 @@ const NoLink = styled.div`
   padding: 41px 0px 35px;
   justify-content: center;
   align-items: center;
+  margin-bottom: 200px;
 
   @media (max-width: 767px) {
     font-size: 14px;
@@ -28,25 +30,30 @@ const Frame = styled.div`
 
 function Folder() {
   const [folderInfo, getFolderInfo] = useData(getFoldersData);
-  const [selectedFolder, setSelectedFolder] = useState();
+  const [linkData, getLinkData] = useData(getLinksData);
+  const [selectedFolder, setSelectedFolder] = useState(null);
 
   const selectFolder = (e) => {
     const folderId = Number(e.target.name);
+    if (Number.isNaN(folderId)) return;
     const selected = folderInfo?.data.filter((item) => item.id === folderId);
     setSelectedFolder(selected[0]);
   };
 
   const getData = async () => {
     try {
+      await getLinkData(selectedFolder?.id ?? '');
       await getFolderInfo();
     } catch (err) {
       console.log(err);
+    } finally {
+      console.log(linkData);
     }
   };
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [selectedFolder]);
 
   return (
     <>
@@ -58,7 +65,11 @@ function Folder() {
             onClick={selectFolder}
             selectedFolder={selectedFolder}
           />
-          <NoLink>저장된 링크가 없습니다.</NoLink>
+          {linkData?.data.length ? (
+            <FolderContents items={linkData} />
+          ) : (
+            <NoLink>저장된 링크가 없습니다.</NoLink>
+          )}
         </Frame>
       </MainContent>
     </>

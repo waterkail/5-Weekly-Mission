@@ -89,11 +89,13 @@ function FolderNameBar({ selectedFolder }) {
   return (
     <Bar>
       <Name>{selectedFolder?.name ?? '전체'}</Name>
-      <Tools>
-        <ToolShared className="Tool_shared">공유</ToolShared>
-        <ToolNameChange className="Tool_nameChange">이름 변경</ToolNameChange>
-        <ToolDelete className="Tool_delete">삭제</ToolDelete>
-      </Tools>
+      {selectedFolder?.name && (
+        <Tools>
+          <ToolShared className="Tool_shared">공유</ToolShared>
+          <ToolNameChange className="Tool_nameChange">이름 변경</ToolNameChange>
+          <ToolDelete className="Tool_delete">삭제</ToolDelete>
+        </Tools>
+      )}
     </Bar>
   );
 }

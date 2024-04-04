@@ -89,7 +89,18 @@ const KebabContainer = styled.div`
 `;
 
 function Card({ item }) {
-  const { createdAt, title, description, imageSource: bg, url } = item;
+  const {
+    createdAt: cReatedAt,
+    created_at,
+    title,
+    description,
+    imageSource,
+    image_source,
+    url,
+  } = item;
+
+  const createdAt = cReatedAt ?? created_at;
+  const bg = imageSource ?? image_source;
 
   const uploadDate = (value) => {
     const date = new Date(value);
