@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getUsersData } from './Api';
 import { useData } from '../Hooks/useData';
 
-function App({ children, headerFixed = true }) {
+function App({ children, headerFixed }) {
   const [user, getUser] = useData(getUsersData);
   const [isLogIn, setIsLogIn] = useState(true);
 

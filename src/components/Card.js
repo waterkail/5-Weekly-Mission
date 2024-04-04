@@ -6,6 +6,7 @@ import kebabImg from '../asset/kebab.png';
 const CardInfo = styled.div`
   display: flex;
   flex-direction: column;
+
   gap: 12px;
   padding: 16px 12px;
 
@@ -43,32 +44,28 @@ const FolderImage = styled.div`
   overflow: hidden;
 
   & .FolderImage_img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
     transform: scale(1);
     transition: transform 200ms;
   }
 `;
 
-const LongAgo = styled.div`
+const LongAgo = styled.span`
   color: #666;
   font-size: 13px;
 `;
 
-const Title = styled.h3`
-  color: #000;
-  height: 19px;
+const Title = styled.strong`
   font-size: 18px;
+  height: 19px;
   font-weight: bold;
 `;
 
-const Info = styled.div`
-  color: #000;
+const Info = styled.p`
   height: 17px;
 `;
 
-const CreatedAt = styled.div`
+const CreatedAt = styled.time`
   color: #333;
   font-size: 14px;
 `;
@@ -78,14 +75,16 @@ const Star = styled.button`
   z-index: 2;
   top: 15px;
   left: 291px;
-  height: 34px;
-  width: 34px;
 `;
 
 const KebabContainer = styled.div`
-  position: relative;
   display: flex;
   justify-content: space-between;
+`;
+
+const ButtonImgs = styled.img`
+  display: inline-block;
+  vertical-align: top;
 `;
 
 function Card({ item }) {
@@ -150,7 +149,7 @@ function Card({ item }) {
   return (
     <Frame>
       <Star onClick={handleStar} type="button">
-        <img src={star} alt="즐겨찾기" height={34} width={34} />
+        <ButtonImgs src={star} alt="즐겨찾기" height={34} width={34} />
       </Star>
       <a href={url} target="blank">
         <FolderImage>
@@ -158,7 +157,7 @@ function Card({ item }) {
             <img
               className="FolderImage_img"
               src={bg}
-              alt={title}
+              alt=""
               height={200}
               width={340}
             />
@@ -166,7 +165,7 @@ function Card({ item }) {
             <img
               className="FolderImage_img"
               src={noImage}
-              alt={title}
+              alt=""
               height={200}
               width={340}
             />
@@ -176,12 +175,12 @@ function Card({ item }) {
           <KebabContainer>
             <LongAgo>{longAgo(createdAt)}</LongAgo>
             <button>
-              <img src={kebabImg} alt="더보기" height={17} width={21} />
+              <ButtonImgs src={kebabImg} alt="더보기" height={17} width={21} />
             </button>
           </KebabContainer>
           <Title>{title}</Title>
           <Info>{description}</Info>
-          <CreatedAt>{uploadDate(createdAt)}</CreatedAt>
+          <CreatedAt dateTime={createdAt}>{uploadDate(createdAt)}</CreatedAt>
         </CardInfo>
       </a>
     </Frame>

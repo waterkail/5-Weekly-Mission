@@ -3,10 +3,10 @@ import Logo from '../asset/logo.svg';
 import { GRAY5 } from './color';
 
 const Heade = styled.header`
-  position: ${({ $headerFixed }) => ($headerFixed ? `fixed` : 'static')};
-  top: 0;
+  position: ${({ $headerFixed }) => ($headerFixed ? 'fixed' : 'static')};
   left: 0;
   right: 0;
+  top: 0;
   display: flex;
   height: 93px;
   padding: 20px 200px;
@@ -27,7 +27,6 @@ const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  align-self: stretch;
   flex-grow: 1;
   max-width: 1520px;
 
@@ -64,21 +63,24 @@ const Button = styled.button`
 `;
 
 const H1Logo = styled.h1`
-  & .linkbararyLogo {
-    width: 133px;
-    height: 24px;
+  width: 133px;
+  height: 24px;
 
-    @media (max-width: 767px) {
-      width: 89px;
-      height: 16px;
-    }
+  @media (max-width: 767px) {
+    width: 89px;
+    height: 16px;
+  }
+
+  & .linkbararyLogo {
+    width: 100%;
+    height: 100%;
   }
 `;
 
 const Profile = styled.div`
   display: flex;
   align-items: center;
-  gap: 6px;
+  column-gap: 6px;
   font-size: 14px;
 
   & .profileImg {
@@ -104,7 +106,7 @@ const UserProfile = ({ email, img }) => {
       <PorfileImage
         className="profileImg"
         src={img}
-        alt="프로필 이미지"
+        alt="프로필"
         width={28}
         height={28}
       />
@@ -113,9 +115,9 @@ const UserProfile = ({ email, img }) => {
   );
 };
 
-const Header = ({ isLogIn, email, img, headerFixed }) => {
+const Header = ({ isLogIn, email, img, fixed }) => {
   return (
-    <Heade $headerFixed={headerFixed}>
+    <Heade $headerFixed={fixed}>
       <HeaderContent>
         <a href="https://www.naver.com/" target="blank">
           <H1Logo>

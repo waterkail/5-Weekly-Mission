@@ -22,12 +22,10 @@ const BarOfSearch = styled.div`
   }
 `;
 const SearchInput = styled.input`
-  width: 100%;
+  flex-grow: 1;
   background-color: ${BAR_COLOR};
-  border-radius: ${BAR_BORDER_RADIUS};
   border: 0px;
   outline: none;
-  overflow: nowrap;
 `;
 
 const SearchBar = ({ palceholder }) => {

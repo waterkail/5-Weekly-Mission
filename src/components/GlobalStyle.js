@@ -90,6 +90,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Pretendard, sans-serif ;
     vertical-align: baseline;
     text-decoration: none;
+    color: #000;
   };
   article,
   aside,

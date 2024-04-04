@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import linkIcon from '../asset/linkIcon.svg';
-import { PRIMARY } from './color';
+import { PRIMARY, WHITE } from './color';
 
-const BAR_COLOR = '#fff';
+const BAR_COLOR = WHITE;
 const BAR_BORDER_RADIUS = '15px';
 const LinkPlaceHolder = '링크를 추가해 보세요';
 
@@ -17,7 +17,6 @@ const AddlinkBar = styled.div`
   background-color: ${BAR_COLOR};
   border: 1px solid ${PRIMARY};
   align-items: center;
-  overflow: hidden;
 
   &::before {
     content: '';
@@ -25,7 +24,6 @@ const AddlinkBar = styled.div`
     background-size: cover;
     width: 20px;
     height: 20px;
-    vertical-align: middle;
 
     @media (max-width: 767px) {
       width: 16px;
@@ -47,11 +45,8 @@ const LinkInput = styled.input`
   margin-left: 12px;
   font-size: 16px;
   flex-grow: 1;
-  background-color: ${BAR_COLOR};
-  border-radius: ${BAR_BORDER_RADIUS};
   border: 0px;
   outline: none;
-  overflow: nowrap;
 
   @media (max-width: 767px) {
     font-size: 14px;
@@ -62,9 +57,7 @@ const LinkInput = styled.input`
 const AddLinkButton = styled.button`
   width: 80px;
   height: 37px;
-  display: flex;
   padding: 10px 16px;
-  align-items: center;
   border-radius: 8px;
   background: linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%);
   color: #f5f5f5;

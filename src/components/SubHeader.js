@@ -5,7 +5,6 @@ const Container = styled.div`
   padding: 113px 32px 60px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color: ${GRAY5};
   margin-top: ${({ $headerfixed }) => ($headerfixed ? `0px` : '-93px')};

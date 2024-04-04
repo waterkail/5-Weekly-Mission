@@ -10,13 +10,9 @@ const Block = styled.button`
   height: 35px;
   font-family: Pretendard;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
   padding: 8px 12px;
   border-radius: 5px;
   border: 1px solid ${PRIMARY};
-  background: #fff;
 
   &:hover {
     background-color: ${GRAY4};
@@ -46,7 +42,7 @@ const FolderList = styled.ul`
 
 const Bar = styled.div`
   display: flex;
-  width: 100%;
+  column-gap: 12px;
   justify-content: space-between;
   align-items: center;
 `;
@@ -58,9 +54,7 @@ const AddFolder = styled.button`
   font-family: Pretendard;
   flex-shrink: 0;
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   letter-spacing: -0.3px;
 
   &::after {
@@ -76,13 +70,14 @@ const AddFolder = styled.button`
   @media (max-width: 767px) {
     color: ${WHITE};
     padding: 8px 24px;
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translateX(-50%);
     bottom: 101px;
     border-radius: 20px;
     border: 1px solid ${WHITE};
     background: ${PRIMARY};
+    z-index: 4;
 
     &::after {
       background-image: url(${AddWhite});

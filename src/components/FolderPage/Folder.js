@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import MainContent from './MainContent';
-import SearchBar from './SearchBar';
-import FolderBar from './FolderPage/FolderBar';
-import FolderContents from './FolderPage/FolderContents';
-import { useData } from '../Hooks/useData';
-import { getFoldersData, getLinksData } from '../components/Api';
+import MainContent from '../MainContent';
+import SearchBar from '../SearchBar';
+import FolderBar from './FolderBar';
+import FolderContents from './FolderContents';
+import { useData } from '../../Hooks/useData';
+import { getFoldersData, getLinksData } from '../Api';
 import { useEffect, useState } from 'react';
 
 const NoLink = styled.div`
@@ -41,14 +41,8 @@ function Folder() {
   };
 
   const getData = async () => {
-    try {
-      await getLinkData(selectedFolder?.id ?? '');
-      await getFolderInfo();
-    } catch (err) {
-      console.log(err);
-    } finally {
-      console.log(linkData);
-    }
+    await getLinkData(selectedFolder?.id ?? '');
+    await getFolderInfo();
   };
 
   useEffect(() => {

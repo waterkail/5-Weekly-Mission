@@ -22,12 +22,10 @@ const Bar = styled.div`
 const Name = styled.h3`
   font-family: Pretendard;
   font-size: 24px;
-  font-style: normal;
   font-weight: 600;
   line-height: normal;
   letter-spacing: -0.2px;
-
-  @media (max-width: 767px) {
+  width @media (max-width: 767px) {
     font-size: 20px;
   }
 `;
@@ -35,7 +33,6 @@ const Name = styled.h3`
 const Tools = styled.div`
   display: flex;
   column-gap: 12px;
-  align-items: center;
 `;
 
 const Tool = styled.button`
@@ -44,9 +41,7 @@ const Tool = styled.button`
   align-items: center;
   font-family: Pretendard;
   font-size: 14px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
 `;
 
 const ToolShared = styled(Tool)`

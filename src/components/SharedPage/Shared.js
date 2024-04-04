@@ -1,6 +1,6 @@
-import CardList from './CardList';
-import SearchBar from './SearchBar';
-import MainContent from './MainContent';
+import CardList from '../CardList';
+import SearchBar from '../SearchBar';
+import MainContent from '../MainContent';
 
 const SEARCH_LINK = '링크를 검색해보세요';
 

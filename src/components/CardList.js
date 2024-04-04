@@ -4,6 +4,7 @@ import Card from './Card';
 const CardsList = styled.ul`
   display: grid;
   gap: 25px 20px;
+  align-self: center;
   grid-template-columns: repeat(3, 1fr);
 
   @media (max-width: 1123px) {
