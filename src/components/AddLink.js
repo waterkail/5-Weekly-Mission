@@ -6,7 +6,7 @@ const BAR_COLOR = WHITE;
 const BAR_BORDER_RADIUS = '15px';
 const LinkPlaceHolder = '링크를 추가해 보세요';
 
-const AddlinkBar = styled.div`
+const AddlinkBar = styled.form`
   display: flex;
   padding: 16px 20px;
   width: 100%;
@@ -41,6 +41,18 @@ const AddlinkBar = styled.div`
   }
 `;
 
+const LinkLabel = styled.label`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+  clip: rect(0 0 0 0);
+`;
+
 const LinkInput = styled.input`
   margin-left: 12px;
   font-size: 16px;
@@ -68,10 +80,16 @@ const AddLinkButton = styled.button`
 `;
 
 const AddLink = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newLink = document.querySelector(`#AddLink`);
+    console.log(newLink.value);
+  };
   return (
-    <AddlinkBar>
-      <LinkInput placeholder={LinkPlaceHolder} />
-      <AddLinkButton>추가하기</AddLinkButton>
+    <AddlinkBar onSubmit={handleSubmit}>
+      <LinkLabel htmlFor="AddLink">링크 추가</LinkLabel>
+      <LinkInput id="AddLink" placeholder={LinkPlaceHolder} />
+      <AddLinkButton type="submit">추가하기</AddLinkButton>
     </AddlinkBar>
   );
 };
