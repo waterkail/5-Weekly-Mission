@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { getFolderData } from '../components/Api';
 import SubHeader from '../components/SubHeader';
 import Shared from '../components/SharedPage/Shared';
@@ -9,13 +9,13 @@ import App from '../components/App';
 function SharedPage() {
   const [folder, getFolder] = useData(getFolderData);
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     await getFolder();
-  };
+  }, [getFolder]);
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return (
     <App headerFixed={true}>
