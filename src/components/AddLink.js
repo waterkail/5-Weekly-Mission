@@ -88,7 +88,7 @@ const AddLink = () => {
   return (
     <AddlinkBar onSubmit={handleSubmit}>
       <LinkLabel htmlFor="AddLink">링크 추가</LinkLabel>
-      <LinkInput id="AddLink" placeholder={LinkPlaceHolder} />
+      <LinkInput type="text" id="AddLink" placeholder={LinkPlaceHolder} />
       <AddLinkButton type="submit">추가하기</AddLinkButton>
     </AddlinkBar>
   );

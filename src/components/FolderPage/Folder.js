@@ -5,7 +5,7 @@ import FolderBar from './FolderBar';
 import FolderContents from './FolderContents';
 import { useData } from '../../Hooks/useData';
 import { getFoldersData, getLinksData } from '../Api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 const NoLink = styled.div`
   display: flex;
@@ -40,14 +40,14 @@ function Folder() {
     setSelectedFolder(selected[0]);
   };
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     await getLinkData(selectedFolder?.id ?? '');
     await getFolderInfo();
-  };
+  }, [getFolderInfo, getLinkData, selectedFolder?.id]);
 
   useEffect(() => {
     getData();
-  }, [selectedFolder]);
+  }, [getData]);
 
   return (
     <>

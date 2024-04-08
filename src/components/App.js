@@ -1,6 +1,6 @@
 import Header from './Header';
 import Footer from './Footer';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getUsersData } from './Api';
 import { useData } from '../Hooks/useData';
 
@@ -8,18 +8,18 @@ function App({ children, headerFixed }) {
   const [user, getUser] = useData(getUsersData);
   const [isLogIn, setIsLogIn] = useState(true);
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     try {
       await getUser(1);
       setIsLogIn(true);
     } catch (err) {
       setIsLogIn(false);
     }
-  };
+  }, [getUser]);
 
   useEffect(() => {
     getData();
-  }, [isLogIn]);
+  }, [isLogIn, getData]);
 
   return (
     <>

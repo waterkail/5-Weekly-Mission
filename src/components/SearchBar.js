@@ -62,7 +62,7 @@ const SearchBar = ({ palceholder }) => {
   return (
     <BarOfSearch onSubmit={handleSubmit}>
       <HiddenLabel htmlFor="search">검색</HiddenLabel>
-      <SearchInput id="search" placeholder={palceholder} />
+      <SearchInput type="text" id="search" placeholder={palceholder} />
       <HiddenButton type="submit">검색하기</HiddenButton>
     </BarOfSearch>
   );
