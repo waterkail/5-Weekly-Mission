@@ -1,10 +1,11 @@
-import styled from 'styled-components';
-import linkIcon from '../asset/linkIcon.svg';
-import { PRIMARY, WHITE } from './color';
+import styled from "styled-components";
+import linkIcon from "../asset/linkIcon.svg";
+import { PRIMARY, WHITE } from "./color";
+import { useRef } from "react";
 
 const BAR_COLOR = WHITE;
-const BAR_BORDER_RADIUS = '15px';
-const LinkPlaceHolder = '링크를 추가해 보세요';
+const BAR_BORDER_RADIUS = "15px";
+const LinkPlaceHolder = "링크를 추가해 보세요";
 
 const AddlinkBar = styled.form`
   display: flex;
@@ -19,7 +20,7 @@ const AddlinkBar = styled.form`
   align-items: center;
 
   &::before {
-    content: '';
+    content: "";
     background-image: url(${linkIcon});
     background-size: cover;
     width: 20px;
@@ -57,7 +58,6 @@ const LinkInput = styled.input`
   margin-left: 12px;
   font-size: 16px;
   flex-grow: 1;
-  border: 0px;
   outline: none;
 
   @media (max-width: 767px) {
@@ -80,15 +80,20 @@ const AddLinkButton = styled.button`
 `;
 
 const AddLink = () => {
+  const AddLink = useRef(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newLink = document.querySelector(`#AddLink`);
-    console.log(newLink.value);
   };
+
   return (
     <AddlinkBar onSubmit={handleSubmit}>
       <LinkLabel htmlFor="AddLink">링크 추가</LinkLabel>
-      <LinkInput type="text" id="AddLink" placeholder={LinkPlaceHolder} />
+      <LinkInput
+        type="text"
+        id="AddLink"
+        ref={AddLink}
+        placeholder={LinkPlaceHolder}
+      />
       <AddLinkButton type="submit">추가하기</AddLinkButton>
     </AddlinkBar>
   );

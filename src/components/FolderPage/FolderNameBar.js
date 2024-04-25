@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import { GRAY2 } from '../color';
-import shareImg from '../../asset/share.svg';
-import penImg from '../../asset/pen.svg';
-import deleteImg from '../../asset/delete.svg';
+import styled from "styled-components";
+import { GRAY2 } from "../color";
+import shareImg from "../../asset/share.svg";
+import penImg from "../../asset/pen.svg";
+import deleteImg from "../../asset/delete.svg";
 
-const ICON_MARGIN = '4px';
-const ICON_H_W = '18px';
+const ICON_MARGIN = "4px";
+const ICON_H_W = "18px";
 
 const Bar = styled.div`
   display: flex;
@@ -25,7 +25,8 @@ const Name = styled.h3`
   font-weight: 600;
   line-height: normal;
   letter-spacing: -0.2px;
-  width @media (max-width: 767px) {
+  width 100%;
+  @media (max-width: 767px) {
     font-size: 20px;
   }
 `;
@@ -46,7 +47,7 @@ const Tool = styled.button`
 
 const ToolShared = styled(Tool)`
   &::before {
-    content: '';
+    content: "";
     background-image: url(${shareImg});
     background-size: cover;
     display: inline-block;
@@ -58,7 +59,7 @@ const ToolShared = styled(Tool)`
 
 const ToolNameChange = styled(Tool)`
   &::before {
-    content: '';
+    content: "";
     background-image: url(${penImg});
     background-size: cover;
     display: inline-block;
@@ -70,7 +71,7 @@ const ToolNameChange = styled(Tool)`
 
 const ToolDelete = styled(Tool)`
   &::before {
-    content: '';
+    content: "";
     background-image: url(${deleteImg});
     background-size: cover;
     display: inline-block;
@@ -83,7 +84,7 @@ const ToolDelete = styled(Tool)`
 function FolderNameBar({ selectedFolder }) {
   return (
     <Bar>
-      <Name>{selectedFolder?.name ?? '전체'}</Name>
+      <Name>{selectedFolder?.name ?? "전체"}</Name>
       {selectedFolder?.name && (
         <Tools>
           <ToolShared type="button" className="Tool_shared">

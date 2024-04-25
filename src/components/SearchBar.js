@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import searchIcon from '../asset/Search.svg';
+import { memo } from 'react';
 
 const BAR_COLOR = '#f5f5f5';
 const BAR_BORDER_RADIUS = '10px';
@@ -68,4 +69,4 @@ const SearchBar = ({ palceholder }) => {
   );
 };
 
-export default SearchBar;
+export default memo(SearchBar);

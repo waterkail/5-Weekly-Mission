@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import { GRAY4, PRIMARY, WHITE } from '../color';
-import Add from '../../asset/add.svg';
-import AddWhite from '../../asset/addWhite.svg';
-import FolderNameBar from './FolderNameBar';
+import styled from "styled-components";
+import { GRAY4, PRIMARY, WHITE } from "../color";
+import Add from "../../asset/add.svg";
+import AddWhite from "../../asset/addWhite.svg";
+import FolderNameBar from "./FolderNameBar";
 
 const Block = styled.button`
   display: flex;
@@ -58,7 +58,7 @@ const AddFolder = styled.button`
   letter-spacing: -0.3px;
 
   &::after {
-    content: '';
+    content: "";
     background-image: url(${Add});
     background-size: cover;
     display: inline-block;
@@ -97,20 +97,14 @@ const FolderIndex = ({ items, onClick, selectedId }) => {
   return (
     <FolderList onClick={onClick}>
       <li key={-1}>
-        <FolderBlock item={{ id: '-1' }} clicked={selectedId ? false : true}>
+        <FolderBlock item={{ id: "-1" }} clicked={selectedId ? false : true}>
           전체
         </FolderBlock>
       </li>
       {items?.map(function (item) {
-        let clicked;
-        if (item?.id === selectedId) {
-          clicked = true;
-        } else {
-          clicked = false;
-        }
         return (
           <li key={item?.id}>
-            <FolderBlock item={item} clicked={clicked}>
+            <FolderBlock item={item} clicked={item?.id === selectedId}>
               {item?.name}
             </FolderBlock>
           </li>
