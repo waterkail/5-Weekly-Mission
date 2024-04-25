@@ -1,11 +1,12 @@
-import styled from 'styled-components';
-import MainContent from '../MainContent';
-import SearchBar from '../SearchBar';
-import FolderBar from './FolderBar';
-import FolderContents from './FolderContents';
-import { useData } from '../../Hooks/useData';
-import { getFoldersData, getLinksData } from '../Api';
-import { useEffect, useState, useCallback } from 'react';
+import styled from "styled-components";
+import MainContent from "../MainContent";
+import SearchBar from "../SearchBar";
+import FolderBar from "./FolderBar";
+import FolderContents from "./FolderContents";
+import { useData } from "../../Hooks/useData";
+import { getFoldersData, getLinksData } from "../Api";
+import { useEffect, useState, useCallback } from "react";
+import CardList from "../CardList";
 
 const NoLink = styled.div`
   display: flex;
@@ -41,7 +42,7 @@ function Folder() {
   };
 
   const getData = useCallback(async () => {
-    await getLinkData(selectedFolder?.id ?? '');
+    await getLinkData(selectedFolder?.id ?? "");
     await getFolderInfo();
   }, [getFolderInfo, getLinkData, selectedFolder?.id]);
 
@@ -60,7 +61,7 @@ function Folder() {
             selectedFolder={selectedFolder}
           />
           {linkData?.data.length ? (
-            <FolderContents items={linkData} />
+            <CardList items={linkData?.data} folder={folderInfo} />
           ) : (
             <NoLink>저장된 링크가 없습니다.</NoLink>
           )}

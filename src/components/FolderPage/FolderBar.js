@@ -3,6 +3,9 @@ import { GRAY4, PRIMARY, WHITE } from "../color";
 import Add from "../../asset/add.svg";
 import AddWhite from "../../asset/addWhite.svg";
 import FolderNameBar from "./FolderNameBar";
+import { useState } from "react";
+import Portal from "../../Portal/Portal";
+import ModalAddFolder from "../Modal/ModalAddFolder";
 
 const Block = styled.button`
   display: flex;
@@ -115,7 +118,12 @@ const FolderIndex = ({ items, onClick, selectedId }) => {
 };
 
 function FolderBar({ folderInfo, onClick, selectedFolder }) {
+  const [addFolder, setAddFolder] = useState(false);
   const selectedId = Number(selectedFolder?.id);
+
+  const handleAddFolder = () => {
+    setAddFolder(!addFolder);
+  };
 
   return (
     <>
@@ -125,9 +133,14 @@ function FolderBar({ folderInfo, onClick, selectedFolder }) {
           items={folderInfo?.data}
           selectedId={selectedId}
         />
-        <AddFolder type="button">폴더 추가</AddFolder>
+        <AddFolder type="button" onClick={handleAddFolder}>
+          폴더 추가
+        </AddFolder>
       </Bar>
       <FolderNameBar selectedFolder={selectedFolder} />
+      <Portal elementId="modal-root">
+        {addFolder && <ModalAddFolder onClick={handleAddFolder} />}
+      </Portal>
     </>
   );
 }
