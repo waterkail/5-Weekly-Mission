@@ -49,16 +49,34 @@ const IconContainer = styled.button`
 `;
 
 const ModalShare = ({ onClick, info }) => {
+  const url = window.location.href;
+  const domain = `${url}/${info?.id}`;
+  const forKakao = {
+    JsKey: "없다",
+    content: {
+      title: "제목",
+      description: "설명, 내용",
+      imageUrl: "보여줄 이미지",
+      link: { mobileWebUrl: domain, webUrl: domain },
+    },
+    btn: [
+      {
+        title: "버튼 이름",
+        link: { mobileWebUrl: domain, webUrl: domain },
+      },
+    ],
+  };
+
   return (
     <ModalFrame name="폴더 공유" onClick={onClick}>
-      <Span>{info}</Span>
+      <Span>{info?.name}</Span>
       <Shares>
         <IconName>
           <IconContainer
             $color="#FEE500"
             $img={KakaoImg}
             onClick={() => {
-              if (0) KakaoFeed({ JsKey: "없소", content: {}, btn: [] });
+              if (0) KakaoFeed(forKakao);
               console.log(
                 "도메인 등록 안해서 작동 안함, 무엇보다 폴더 별로 따로 url을 등록한게 아니라서 폴더 공유가 말이 안됨"
               );
@@ -67,7 +85,8 @@ const ModalShare = ({ onClick, info }) => {
           <span>카카오톡</span>
         </IconName>
         <IconName>
-          <FaceBookShare url={`https://chipper-selkie-f96db4.netlify.app/`}>
+          <FaceBookShare url={domain}>
+            {/*원래라면 index.html에 og.url과 일치해야 하고 하지만, 별도로 공유하지 않았기에 생략하겠습니다.*/}
             <IconContainer
               $color="#1877F2"
               $img={FaceImg}

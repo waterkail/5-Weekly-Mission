@@ -22,7 +22,7 @@ const Input = styled.input`
 `;
 
 const ModalInput = () => {
-  return <Input placeholder="내용 입력" />;
+  return <Input type="text" placeholder="내용 입력" />;
 };
 
 export default ModalInput;

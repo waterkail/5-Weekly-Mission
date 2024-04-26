@@ -5,7 +5,7 @@ import kebabImg from "../asset/kebab.png";
 import { useState } from "react";
 import Portal from "../Portal/Portal";
 import ModalDeleteLink from "./Modal/ModalDeleteLink";
-import ModalAddLink from "./Modal/ModalAdd";
+import ModalAddLink from "./Modal/ModalAddLink";
 
 const CardInfo = styled.div`
   display: flex;
@@ -264,7 +264,7 @@ function Card({ item, folder }) {
         {modalAdd && (
           <ModalAddLink
             onClick={addClick}
-            info={url}
+            url={url}
             folder={folder}
           ></ModalAddLink>
         )}

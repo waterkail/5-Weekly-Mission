@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import linkIcon from "../asset/linkIcon.svg";
 import { PRIMARY, WHITE } from "./color";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Portal from "../Portal/Portal";
+import ModalAddLink from "./Modal/ModalAddLink";
 
 const BAR_COLOR = WHITE;
 const BAR_BORDER_RADIUS = "15px";
@@ -79,10 +81,15 @@ const AddLinkButton = styled.button`
   white-space: nowrap;
 `;
 
-const AddLink = () => {
+const AddLink = ({ folder }) => {
   const AddLink = useRef(null);
+  const [add, setAdd] = useState(false);
+  const [url, setUrl] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setAdd(!add);
+    setUrl(AddLink.current.value);
   };
 
   return (
@@ -95,6 +102,11 @@ const AddLink = () => {
         placeholder={LinkPlaceHolder}
       />
       <AddLinkButton type="submit">추가하기</AddLinkButton>
+      <Portal elementId="modal-root">
+        {add && (
+          <ModalAddLink onClick={handleSubmit} url={url} folder={folder} />
+        )}
+      </Portal>
     </AddlinkBar>
   );
 };

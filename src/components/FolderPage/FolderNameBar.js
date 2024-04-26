@@ -131,9 +131,7 @@ function FolderNameBar({ selectedFolder }) {
           <ModalDeleteFolder info={selectedFolder?.name} onClick={handleDel} />
         )}
         {nameChange && <ModalEdit onClick={handleChange} />}
-        {share && (
-          <ModalShare onClick={handleShare} info={selectedFolder?.name} />
-        )}
+        {share && <ModalShare onClick={handleShare} info={selectedFolder} />}
       </Portal>
     </Bar>
   );

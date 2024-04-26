@@ -30,7 +30,9 @@ const DeleteButton = ({ info, onClick }) => {
   return (
     <>
       <Span>{info}</Span>
-      <Button onClick={onClick}>삭제하기</Button>
+      <Button onClick={onClick} type="button">
+        삭제하기
+      </Button>
     </>
   );
 };

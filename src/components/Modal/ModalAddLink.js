@@ -74,13 +74,13 @@ const Folder = ({ item }) => {
   );
 };
 
-const ModalAddLink = ({ info, onClick, folder }) => {
+const ModalAddLink = ({ url, onClick, folder }) => {
   const Adding = () => {
     console.log("추가 되는 무언가");
   };
   return (
     <ModalFrame name="폴더에 추가" onClick={onClick}>
-      <Span>{info}</Span>
+      <Span>{url}</Span>
       <Folders>
         {folder?.data.map((item) => {
           if (item.id !== 14)

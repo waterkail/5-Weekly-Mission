@@ -15,7 +15,11 @@ const Button = styled.button`
 `;
 
 const BlueButton = ({ children, onClick }) => {
-  return <Button onClick={onClick}>{children}</Button>;
+  return (
+    <Button onClick={onClick} type="button">
+      {children}
+    </Button>
+  );
 };
 
 export default BlueButton;

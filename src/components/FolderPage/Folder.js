@@ -2,9 +2,6 @@ import styled from "styled-components";
 import MainContent from "../MainContent";
 import SearchBar from "../SearchBar";
 import FolderBar from "./FolderBar";
-import { useData } from "../../Hooks/useData";
-import { getFoldersData, getLinksData } from "../Api/Api";
-import { useEffect, useState, useCallback } from "react";
 import CardList from "../CardList";
 
 const NoLink = styled.div`
@@ -28,27 +25,7 @@ const Frame = styled.div`
   gap: 24px;
 `;
 
-function Folder() {
-  const [folderInfo, getFolderInfo] = useData(getFoldersData);
-  const [linkData, getLinkData] = useData(getLinksData);
-  const [selectedFolder, setSelectedFolder] = useState(null);
-
-  const selectFolder = (e) => {
-    const folderId = Number(e.target.name);
-    if (Number.isNaN(folderId)) return;
-    const selected = folderInfo?.data.filter((item) => item.id === folderId);
-    setSelectedFolder(selected[0]);
-  };
-
-  const getData = useCallback(async () => {
-    await getLinkData(selectedFolder?.id ?? "");
-    await getFolderInfo();
-  }, [getFolderInfo, getLinkData, selectedFolder?.id]);
-
-  useEffect(() => {
-    getData();
-  }, [getData]);
-
+function Folder({ selectFolder, folderInfo, linkData, selectedFolder }) {
   return (
     <>
       <MainContent>

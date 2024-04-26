@@ -61,7 +61,7 @@ const ModalFrame = ({ children, name, onClick }) => {
   return (
     <Modal>
       <Frame>
-        <Close onClick={onClick}></Close>
+        <Close onClick={onClick} type="button"></Close>
         <Title>{name}</Title>
         {children}
       </Frame>
