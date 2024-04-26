@@ -3,6 +3,10 @@ import styled from "styled-components";
 import LinkImg from "../../asset/linkIcon.svg";
 import KakaoImg from "../../asset/Kakao.svg";
 import FaceImg from "../../asset/Facebook.svg";
+import { KakaoFeed } from "../snsShares/KakaoShare";
+import FaceBookShare from "../snsShares/FaceBookShare";
+import copyUrl from "../snsShares/copyUrl";
+import { ToastContainer } from "react-toastify";
 
 const Span = styled.span`
   color: #9fa6b2;
@@ -50,21 +54,38 @@ const ModalShare = ({ onClick, info }) => {
       <Span>{info}</Span>
       <Shares>
         <IconName>
-          <IconContainer $color="#FEE500" $img={KakaoImg}></IconContainer>
+          <IconContainer
+            $color="#FEE500"
+            $img={KakaoImg}
+            onClick={() => {
+              if (0) KakaoFeed({ JsKey: "없소", content: {}, btn: [] });
+              console.log(
+                "도메인 등록 안해서 작동 안함, 무엇보다 폴더 별로 따로 url을 등록한게 아니라서 폴더 공유가 말이 안됨"
+              );
+            }}
+          ></IconContainer>
           <span>카카오톡</span>
         </IconName>
         <IconName>
-          <IconContainer $color="#1877F2" $img={FaceImg}></IconContainer>
+          <FaceBookShare url={`https://chipper-selkie-f96db4.netlify.app/`}>
+            <IconContainer
+              $color="#1877F2"
+              $img={FaceImg}
+              as={"div"}
+            ></IconContainer>
+          </FaceBookShare>
           <span>페이스북</span>
         </IconName>
         <IconName>
           <IconContainer
             $color="rgba(157, 157, 157, 0.04)"
             $img={LinkImg}
+            onClick={copyUrl}
           ></IconContainer>
           <span>링크 복사</span>
         </IconName>
       </Shares>
+      <ToastContainer style={{ fontSize: "12px" }} />
     </ModalFrame>
   );
 };

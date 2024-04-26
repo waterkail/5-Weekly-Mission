@@ -2,9 +2,8 @@ import styled from "styled-components";
 import MainContent from "../MainContent";
 import SearchBar from "../SearchBar";
 import FolderBar from "./FolderBar";
-import FolderContents from "./FolderContents";
 import { useData } from "../../Hooks/useData";
-import { getFoldersData, getLinksData } from "../Api";
+import { getFoldersData, getLinksData } from "../Api/Api";
 import { useEffect, useState, useCallback } from "react";
 import CardList from "../CardList";
 
