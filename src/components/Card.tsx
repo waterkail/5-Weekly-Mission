@@ -2,10 +2,11 @@ import styled from "styled-components";
 import noImage from "../asset/noImage.png";
 import star from "../asset/star.svg";
 import kebabImg from "../asset/kebab.png";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import Portal from "../Portal/Portal";
 import ModalDeleteLink from "./Modal/ModalDeleteLink";
 import ModalAddLink from "./Modal/ModalAddLink";
+import { LinkItem } from "./CardList";
 
 const CardInfo = styled.div`
   display: flex;
@@ -135,7 +136,7 @@ const Button = styled.button`
   }
 `;
 
-function Card({ item, folder }) {
+function Card({ item, folder }: { item: LinkItem; folder: any }) {
   const {
     createdAt: cReatedAt,
     created_at,
@@ -152,12 +153,12 @@ function Card({ item, folder }) {
   const createdAt = cReatedAt ?? created_at;
   const bg = imageSource ?? image_source;
 
-  const uploadDate = (value) => {
+  const uploadDate = (value: string | number) => {
     const date = new Date(value);
     return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
   };
 
-  function longAgo(value) {
+  function longAgo(value: string | number) {
     const date = new Date(value);
     const now = new Date();
     const MINUTE = 60 * 1000;
@@ -166,39 +167,39 @@ function Card({ item, folder }) {
     const MONTH = 31 * DAY;
     const YEAR = 12 * MONTH;
 
-    const time = now - date;
+    const time = Number(now) - Number(date);
 
     if (time < 120000) return "1 minute ago";
     if (time < HOUR) {
-      const minutes = parseInt(time / MINUTE);
+      const minutes = parseInt(String(time / MINUTE));
       return `${minutes} minute ago`;
     }
     if (time < 2 * HOUR) return "1 hour ago";
     if (time < DAY) {
-      const hours = parseInt(time / HOUR);
+      const hours = parseInt(String(time / HOUR));
       return `${hours} hours ago`;
     }
     if (time < 2 * DAY) return "1 day ago";
     if (time < MONTH) {
-      const days = parseInt(time / DAY);
+      const days = parseInt(String(time / DAY));
       return `${days} days ago`;
     }
     if (time < 2 * MONTH) return "1 month ago";
     if (time < YEAR) {
-      const months = parseInt(time / MONTH);
+      const months = parseInt(String(time / MONTH));
       return `${months} months ago`;
     }
     if (time < 2 * YEAR) return "1 year ago";
-    const years = parseInt(time / YEAR);
+    const years = parseInt(String(time / YEAR));
     return `${years} years ago`;
   }
 
-  const clickkebab = (e) => {
+  const clickkebab = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setShow(!show);
   };
 
-  const handleStar = (e) => {
+  const handleStar = (e: MouseEvent<HTMLButtonElement>) => {
     console.log(e.target);
   };
 
@@ -248,12 +249,14 @@ function Card({ item, folder }) {
           </FolderImage>
           <CardInfo>
             <KebabContainer>
-              <LongAgo>{longAgo(createdAt)}</LongAgo>
+              <LongAgo>{longAgo(createdAt || 0)}</LongAgo>
               <KebabButton type="button" onClick={clickkebab}></KebabButton>
             </KebabContainer>
             <Title>{title}</Title>
             <Info>{description}</Info>
-            <CreatedAt dateTime={createdAt}>{uploadDate(createdAt)}</CreatedAt>
+            <CreatedAt dateTime={createdAt}>
+              {uploadDate(createdAt || 0)}
+            </CreatedAt>
           </CardInfo>
         </a>
       </Frame>

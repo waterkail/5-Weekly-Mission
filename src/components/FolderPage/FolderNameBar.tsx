@@ -8,6 +8,7 @@ import { useState } from "react";
 import ModalDeleteFolder from "../Modal/ModalDeleteFolder";
 import ModalEdit from "../Modal/ModalEdit";
 import ModalShare from "../Modal/ModalShare";
+import { FolderType } from "../../pages/FolderPage";
 
 const ICON_MARGIN = "4px";
 const ICON_H_W = "18px";
@@ -85,7 +86,7 @@ const ToolDelete = styled(Tool)`
   }
 `;
 
-function FolderNameBar({ selectedFolder }) {
+function FolderNameBar({ selectedFolder }: { selectedFolder?: FolderType }) {
   const [deleteFolder, setDeleteFolder] = useState(false);
   const [nameChange, setNameChange] = useState(false);
   const [share, setShare] = useState(false);

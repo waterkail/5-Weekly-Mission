@@ -2,7 +2,7 @@ import ModalFrame from "./ModalFrame";
 import BlueButton from "./BlueButton";
 import ModalInput from "./ModalInput";
 
-const ModalAddFolder = ({ onClick }) => {
+const ModalAddFolder = ({ onClick }: { onClick: () => void }) => {
   return (
     <ModalFrame name="폴더 추가" onClick={onClick}>
       <ModalInput />

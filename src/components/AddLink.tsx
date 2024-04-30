@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import linkIcon from "../asset/linkIcon.svg";
 import { PRIMARY, WHITE } from "./color";
-import { useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import Portal from "../Portal/Portal";
 import ModalAddLink from "./Modal/ModalAddLink";
 
@@ -81,15 +81,15 @@ const AddLinkButton = styled.button`
   white-space: nowrap;
 `;
 
-const AddLink = ({ folder }) => {
-  const AddLink = useRef(null);
+const AddLink = ({ folder }: { folder: any }) => {
+  const AddLink = useRef<HTMLInputElement>(null);
   const [add, setAdd] = useState(false);
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState<string>();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setAdd(!add);
-    setUrl(AddLink.current.value);
+    setUrl(AddLink.current?.value);
   };
 
   return (

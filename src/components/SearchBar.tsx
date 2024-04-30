@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import searchIcon from "../asset/Search.svg";
-import { memo, useRef } from "react";
+import { FormEvent, memo, useRef } from "react";
 
 const BAR_COLOR = "#f5f5f5";
 const BAR_BORDER_RADIUS = "10px";
@@ -53,13 +53,13 @@ const HiddenLabel = styled.label`
   clip: rect(0 0 0 0);
 `;
 
-const SearchBar = ({ palceholder }) => {
-  const search = useRef(null);
+const SearchBar = ({ placeholder }: { placeholder?: string }) => {
+  const search = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const searchingLink = search.current;
-    console.log(searchingLink.value);
+    console.log(searchingLink?.value);
   };
 
   return (
@@ -68,7 +68,7 @@ const SearchBar = ({ palceholder }) => {
       <SearchInput
         type="text"
         id="search"
-        placeholder={palceholder}
+        placeholder={placeholder}
         ref={search}
       />
       <HiddenButton type="submit">검색하기</HiddenButton>

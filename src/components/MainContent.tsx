@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import { ReactNode } from "react";
+import styled from "styled-components";
 
 const Main = styled.main`
   display: flex;
@@ -14,7 +15,7 @@ const Content = styled.div`
   max-width: 1060px;
 `;
 
-const MainContent = ({ children }) => {
+const MainContent = ({ children }: { children: ReactNode }) => {
   return (
     <Main>
       <Content>{children}</Content>

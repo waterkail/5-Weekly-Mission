@@ -16,12 +16,23 @@ const CardsList = styled.ul`
   }
 `;
 
-function CardList({ items, folder }) {
+export interface LinkItem {
+  id: number;
+  createdAt?: string;
+  created_at?: string;
+  url: string;
+  title: string;
+  description: string;
+  imageSource?: string;
+  image_source?: string;
+}
+
+function CardList({ items, folder }: { items: LinkItem[]; folder?: any }) {
   return (
     <CardsList>
       {items?.map((item) => {
         return (
-          <li key={item.id}>
+          <li key={item?.id}>
             <Card item={item} folder={folder} />
           </li>
         );

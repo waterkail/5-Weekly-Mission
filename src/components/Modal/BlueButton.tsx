@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -14,7 +15,13 @@ const Button = styled.button`
   line-height: normal;
 `;
 
-const BlueButton = ({ children, onClick }) => {
+const BlueButton = ({
+  children,
+  onClick,
+}: {
+  children: ReactNode;
+  onClick?: (...prams: any[]) => void;
+}) => {
   return (
     <Button onClick={onClick} type="button">
       {children}

@@ -13,6 +13,9 @@ function Portal({ children, elementId }: Props) {
   );
   if (rootElement instanceof HTMLElement)
     return createPortal(children, rootElement);
+  else {
+    return <></>;
+  }
 }
 
 export default Portal;

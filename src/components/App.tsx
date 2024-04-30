@@ -1,10 +1,16 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import { useCallback, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import { getUsersData } from "./Api/Api";
 import { useData } from "../Hooks/useData";
 
-function App({ children, headerFixed }) {
+function App({
+  children,
+  headerFixed,
+}: {
+  children: ReactNode;
+  headerFixed: boolean;
+}) {
   const [user, getUser] = useData(getUsersData);
   const [isLogIn, setIsLogIn] = useState(true);
 

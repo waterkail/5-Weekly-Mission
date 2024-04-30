@@ -3,6 +3,8 @@ import MainContent from "../MainContent";
 import SearchBar from "../SearchBar";
 import FolderBar from "./FolderBar";
 import CardList from "../CardList";
+import { FolderType } from "../../pages/FolderPage";
+import { MouseEvent } from "react";
 
 const NoLink = styled.div`
   display: flex;
@@ -25,7 +27,14 @@ const Frame = styled.div`
   gap: 24px;
 `;
 
-function Folder({ selectFolder, folderInfo, linkData, selectedFolder }) {
+interface Props {
+  selectFolder: (e: MouseEvent<any, MouseEvent>) => void;
+  folderInfo: any;
+  linkData: any;
+  selectedFolder?: FolderType;
+}
+
+function Folder({ selectFolder, folderInfo, linkData, selectedFolder }: Props) {
   return (
     <>
       <MainContent>

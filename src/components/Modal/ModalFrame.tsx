@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import closed from "../../asset/close.png";
 
 const Modal = styled.div`
@@ -44,7 +44,13 @@ const Title = styled.h3`
   line-height: normal;
 `;
 
-const ModalFrame = ({ children, name, onClick }) => {
+interface ModalProps {
+  children: ReactNode;
+  name: string;
+  onClick: () => void;
+}
+
+const ModalFrame = ({ children, name, onClick }: ModalProps) => {
   useEffect(() => {
     document.body.style.cssText = `
       position: fixed; 

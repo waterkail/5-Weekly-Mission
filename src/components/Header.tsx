@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Logo from "../asset/logo.svg";
 import { GRAY5 } from "./color";
+import { BooleanLiteral } from "typescript";
 
-const Heading = styled.header`
+const Heading = styled.header<{ $headerFixed: boolean }>`
   position: ${({ $headerFixed }) => ($headerFixed ? "fixed" : "static")};
   left: 0;
   right: 0;
@@ -100,7 +101,17 @@ const PorfileImage = styled.img`
   border: 0px;
 `;
 
-const UserProfile = ({ email, img }) => {
+interface UserProfileProps {
+  email: string;
+  img: string;
+}
+
+interface HeaderProps extends UserProfileProps {
+  isLogIn: boolean;
+  fixed: boolean;
+}
+
+const UserProfile = ({ email, img }: UserProfileProps) => {
   return (
     <Profile>
       <PorfileImage
@@ -115,7 +126,7 @@ const UserProfile = ({ email, img }) => {
   );
 };
 
-const Header = ({ isLogIn, email, img, fixed }) => {
+const Header = ({ isLogIn, email, img, fixed }: HeaderProps) => {
   return (
     <Heading $headerFixed={fixed}>
       <HeaderContent>

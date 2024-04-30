@@ -1,4 +1,12 @@
-const FaceBookShare = ({ children, url }) => {
+import { ReactNode } from "react";
+
+const FaceBookShare = ({
+  children,
+  url,
+}: {
+  children: ReactNode;
+  url: string;
+}) => {
   const handleClick = () => {
     window.open(
       "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url),

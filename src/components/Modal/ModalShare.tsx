@@ -38,7 +38,7 @@ const IconName = styled.div`
   line-height: 15px;
 `;
 
-const IconContainer = styled.button`
+const IconContainer = styled.button<{ $color: string; $img: string }>`
   width: 42px;
   height: 42px;
   border-radius: 37.333px;
@@ -48,7 +48,12 @@ const IconContainer = styled.button`
   background-repeat: no-repeat;
 `;
 
-const ModalShare = ({ onClick, info }) => {
+interface Props {
+  onClick: () => void;
+  info: any;
+}
+
+const ModalShare = ({ onClick, info }: Props) => {
   const url = window.location.href;
   const domain = `${url}/${info?.id}`;
   const forKakao = {

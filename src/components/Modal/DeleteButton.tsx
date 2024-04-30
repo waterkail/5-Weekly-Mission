@@ -26,7 +26,13 @@ const Span = styled.span`
   text-overflow: ellipsis;
 `;
 
-const DeleteButton = ({ info, onClick }) => {
+const DeleteButton = ({
+  info,
+  onClick,
+}: {
+  info?: string;
+  onClick?: (...prams: any[]) => void;
+}) => {
   return (
     <>
       <Span>{info}</Span>

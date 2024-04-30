@@ -3,11 +3,12 @@ import { GRAY4, PRIMARY, WHITE } from "../color";
 import Add from "../../asset/add.svg";
 import AddWhite from "../../asset/addWhite.svg";
 import FolderNameBar from "./FolderNameBar";
-import { useState } from "react";
+import { MouseEvent, ReactNode, useState } from "react";
 import Portal from "../../Portal/Portal";
 import ModalAddFolder from "../Modal/ModalAddFolder";
+import { FolderType } from "../../pages/FolderPage";
 
-const Block = styled.button`
+const Block = styled.button<{ $clicked: boolean }>`
   display: flex;
   align-items: center;
   height: 35px;
@@ -88,26 +89,42 @@ const AddFolder = styled.button`
   }
 `;
 
-const FolderBlock = ({ item, clicked, children }) => {
+const FolderBlock = ({
+  itemId,
+  clicked,
+  children,
+}: {
+  itemId: number;
+  clicked: boolean;
+  children: ReactNode;
+}) => {
   return (
-    <Block name={item.id} $clicked={clicked} type="button">
+    <Block name={String(itemId)} $clicked={clicked} type="button">
       {children}
     </Block>
   );
 };
 
-const FolderIndex = ({ items, onClick, selectedId }) => {
+const FolderIndex = ({
+  items,
+  onClick,
+  selectedId,
+}: {
+  items: { [Folders: string]: any };
+  onClick: (e: any) => void;
+  selectedId: number;
+}) => {
   return (
     <FolderList onClick={onClick}>
       <li key={-1}>
-        <FolderBlock item={{ id: "-1" }} clicked={selectedId ? false : true}>
+        <FolderBlock itemId={-1} clicked={selectedId ? false : true}>
           전체
         </FolderBlock>
       </li>
-      {items?.map(function (item) {
+      {items?.map(function (item: FolderType) {
         return (
           <li key={item?.id}>
-            <FolderBlock item={item} clicked={item?.id === selectedId}>
+            <FolderBlock itemId={item.id} clicked={item?.id === selectedId}>
               {item?.name}
             </FolderBlock>
           </li>
@@ -117,7 +134,15 @@ const FolderIndex = ({ items, onClick, selectedId }) => {
   );
 };
 
-function FolderBar({ folderInfo, onClick, selectedFolder }) {
+function FolderBar({
+  folderInfo,
+  onClick,
+  selectedFolder,
+}: {
+  folderInfo: any;
+  onClick: (e: MouseEvent<any, MouseEvent>) => void;
+  selectedFolder?: FolderType;
+}) {
   const [addFolder, setAddFolder] = useState(false);
   const selectedId = Number(selectedFolder?.id);
 

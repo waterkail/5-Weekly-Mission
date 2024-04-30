@@ -22,7 +22,7 @@ export async function getFolderData() {
   return response.json();
 }
 
-export async function getUsersData(userId?: string) {
+export async function getUsersData(userId?: string | number) {
   const response = await fetch(`${BASE_URL}/users/${userId}`, {
     method: "GET",
     headers: { accept: `*/*` },
@@ -40,7 +40,7 @@ export async function getFoldersData() {
   return response.json();
 }
 
-export async function getLinksData(folderId?: string) {
+export async function getLinksData(folderId?: string | number) {
   const response = await fetch(
     `${BASE_URL}/users/1/links?folderId=${folderId}`,
     {

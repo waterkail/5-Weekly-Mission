@@ -10,7 +10,7 @@ function SharedPage() {
   const [folder, getFolder] = useData(getFolderData);
 
   const getData = useCallback(async () => {
-    if (getFolder instanceof Promise) await getFolder();
+    await getFolder();
   }, [getFolder]);
 
   useEffect(() => {

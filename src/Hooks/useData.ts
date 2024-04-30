@@ -1,20 +1,21 @@
 import { useCallback, useState } from "react";
 
 export function useData(
-  asyncFunction: (pram?: string) => Promise<any>,
-  value?: string
+  asyncFunction: (pram?: string | number) => Promise<any>
 ) {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
 
-  const getData = useCallback(async () => {
-    try {
-      const result = await asyncFunction(value);
-      setData(result);
-    } catch (err) {
-      console.log(err);
-      setData(null);
-    }
-  }, [asyncFunction, value]);
+  const getData = useCallback(
+    async (value?: string | number) => {
+      try {
+        const result = await asyncFunction(value);
+        setData(result);
+      } catch (err) {
+        setData(null);
+      }
+    },
+    [asyncFunction]
+  );
 
-  return [data, getData];
+  return [data, getData] as [any, (value?: string | number) => Promise<void>];
 }

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import checked from "../../asset/check.png";
 import { GRAY5 } from "../color";
 import { useState, Fragment } from "react";
+import { LinkItem } from "../CardList";
 
 const Span = styled.span`
   color: #9fa6b2;
@@ -24,7 +25,7 @@ const Folders = styled.ul`
   margin-bottom: 24px;
 `;
 
-const Folderr = styled.li`
+const Folderr = styled.li<{ $clicked: boolean }>`
   display: flex;
   padding: 8px;
   column-gap: 8px;
@@ -55,7 +56,13 @@ const FolderLinks = styled.span`
   line-height: normal;
 `;
 
-const Folder = ({ item }) => {
+interface AddLinkProps {
+  url?: string;
+  onClick: (...props: any[]) => void;
+  folder: { [folder: string]: any };
+}
+
+const Folder = ({ item }: { item: { [folder: string]: any } }) => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
@@ -74,7 +81,7 @@ const Folder = ({ item }) => {
   );
 };
 
-const ModalAddLink = ({ url, onClick, folder }) => {
+const ModalAddLink = ({ url, onClick, folder }: AddLinkProps) => {
   const Adding = () => {
     console.log("추가 되는 무언가");
   };
@@ -82,7 +89,7 @@ const ModalAddLink = ({ url, onClick, folder }) => {
     <ModalFrame name="폴더에 추가" onClick={onClick}>
       <Span>{url}</Span>
       <Folders>
-        {folder?.data.map((item) => {
+        {folder?.data.map((item: LinkItem) => {
           if (item.id !== 14)
             return (
               <Fragment key={item?.id * -17}>
