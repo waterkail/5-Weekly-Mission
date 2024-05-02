@@ -13,7 +13,7 @@ const LinkPlaceHolder = "링크를 추가해 보세요";
 const Div = styled.div`
   display: flex;
   padding: 24px 0;
-  margin: 40px 0 29px;
+  margin-top: 40px;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@ const Div = styled.div`
     bottom: 0px;
     left: 0px;
     right: 0px;
-    z-index: 1;
+    z-index: 3;
     padding: 24px 32px;
     margin: 0;
     background-color: #f0f6ff;
@@ -111,12 +111,12 @@ const AddLinkButton = styled.button`
 
 const Observed = styled.div`
   height: 1px;
-
+  margin-bottom: 53px;
   &.big {
-    height: 190px;
+    height: 137px;
 
     @media (max-width: 767px) {
-      height: 148px;
+      height: 105px;
     }
   }
 `;
