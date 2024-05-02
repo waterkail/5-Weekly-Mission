@@ -7,9 +7,11 @@ import { useData } from "../Hooks/useData";
 function App({
   children,
   headerFixed,
+  foot,
 }: {
   children: ReactNode;
   headerFixed: boolean;
+  foot?: (node?: Element | null | undefined) => void;
 }) {
   const [user, getUser] = useData(getUsersData);
   const [isLogIn, setIsLogIn] = useState(true);
@@ -36,7 +38,7 @@ function App({
         fixed={headerFixed}
       />
       {children}
-      <Footer />
+      <Footer observer={foot} />
     </>
   );
 }

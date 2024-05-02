@@ -4,10 +4,39 @@ import { PRIMARY, WHITE } from "./color";
 import { FormEvent, useRef, useState } from "react";
 import Portal from "../Portal/Portal";
 import ModalAddLink from "./Modal/ModalAddLink";
+import { useInView } from "react-intersection-observer";
 
 const BAR_COLOR = WHITE;
 const BAR_BORDER_RADIUS = "15px";
 const LinkPlaceHolder = "링크를 추가해 보세요";
+
+const Div = styled.div`
+  display: flex;
+  padding: 24px 0;
+  margin: 40px 0 29px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  &.foot {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+    padding: 24px 32px;
+    margin: 0;
+    background-color: #f0f6ff;
+  }
+
+  &.unseen {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 14px;
+  }
+`;
 
 const AddlinkBar = styled.form`
   display: flex;
@@ -15,7 +44,7 @@ const AddlinkBar = styled.form`
   width: 100%;
   max-width: 800px;
   min-width: 336px;
-  margin: 40px 0 30px;
+
   border-radius: ${BAR_BORDER_RADIUS};
   background-color: ${BAR_COLOR};
   border: 1px solid ${PRIMARY};
@@ -39,7 +68,6 @@ const AddlinkBar = styled.form`
   }
 
   @media (max-width: 767px) {
-    margin-top: 14px;
     padding: 8px 10px;
   }
 `;
@@ -81,10 +109,23 @@ const AddLinkButton = styled.button`
   white-space: nowrap;
 `;
 
-const AddLink = ({ folder }: { folder: any }) => {
+const Observed = styled.div`
+  height: 1px;
+
+  &.big {
+    height: 190px;
+
+    @media (max-width: 767px) {
+      height: 148px;
+    }
+  }
+`;
+
+const AddLink = ({ folder, footView }: { folder: any; footView: boolean }) => {
   const AddLink = useRef<HTMLInputElement>(null);
   const [add, setAdd] = useState(false);
   const [url, setUrl] = useState<string>();
+  const [target, inView] = useInView();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -93,21 +134,26 @@ const AddLink = ({ folder }: { folder: any }) => {
   };
 
   return (
-    <AddlinkBar onSubmit={handleSubmit}>
-      <LinkLabel htmlFor="AddLink">링크 추가</LinkLabel>
-      <LinkInput
-        type="text"
-        id="AddLink"
-        ref={AddLink}
-        placeholder={LinkPlaceHolder}
-      />
-      <AddLinkButton type="submit">추가하기</AddLinkButton>
-      <Portal elementId="modal-root">
-        {add && (
-          <ModalAddLink onClick={handleSubmit} url={url} folder={folder} />
-        )}
-      </Portal>
-    </AddlinkBar>
+    <>
+      <Div className={`${inView ? "" : "foot"} ${footView ? "unseen" : ""}`}>
+        <AddlinkBar onSubmit={handleSubmit}>
+          <LinkLabel htmlFor="AddLink">링크 추가</LinkLabel>
+          <LinkInput
+            type="text"
+            id="AddLink"
+            ref={AddLink}
+            placeholder={LinkPlaceHolder}
+          />
+          <AddLinkButton type="submit">추가하기</AddLinkButton>
+          <Portal elementId="modal-root">
+            {add && (
+              <ModalAddLink onClick={handleSubmit} url={url} folder={folder} />
+            )}
+          </Portal>
+        </AddlinkBar>
+      </Div>
+      <Observed ref={target} className={inView ? "" : "big"}></Observed>
+    </>
   );
 };
 

@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import { BLACK } from './color';
-import facebook from '../asset/akar-icons_facebook-fill.svg';
-import twitter from '../asset/akar-icons_twitter-fill.svg';
-import youtube from '../asset/akar-icons_youtube-fill.svg';
-import instagram from '../asset/ant-design_instagram-filled.svg';
+import styled from "styled-components";
+import { BLACK } from "./color";
+import facebook from "../asset/akar-icons_facebook-fill.svg";
+import twitter from "../asset/akar-icons_twitter-fill.svg";
+import youtube from "../asset/akar-icons_youtube-fill.svg";
+import instagram from "../asset/ant-design_instagram-filled.svg";
 
 const YEAR = new Date().getFullYear();
 const ICON_H_W = 20;
@@ -80,9 +80,13 @@ const LinkIcons = styled.div`
   }
 `;
 
-const Footer = () => {
+const Footer = ({
+  observer,
+}: {
+  observer?: (node?: Element | null | undefined) => void;
+}) => {
   return (
-    <Foote>
+    <Foote ref={observer}>
       <UnderBar>
         <CopyRight>©codeit - {YEAR}</CopyRight>
         <FaqPolicy>

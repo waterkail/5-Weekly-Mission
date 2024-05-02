@@ -6,6 +6,7 @@ import { useData } from "../Hooks/useData";
 import { getLinksData, getFoldersData } from "../components/Api/Api";
 import { MouseEvent, useCallback, useEffect, useState } from "react";
 import { LinkItem } from "../components/CardList";
+import { useInView } from "react-intersection-observer";
 
 interface Item {
   name: string;
@@ -26,6 +27,7 @@ function FolderPage() {
   const [folderInfo, getFolderInfo] = useData(getFoldersData);
   const [linkData, getLinkData] = useData(getLinksData);
   const [selectedFolder, setSelectedFolder] = useState<FolderType>();
+  const [foot, footView] = useInView();
 
   const selectFolder = (e: MouseEvent<any, MouseEvent>) => {
     const target = e.target;
@@ -48,9 +50,9 @@ function FolderPage() {
   }, [getData]);
 
   return (
-    <App headerFixed={false}>
+    <App headerFixed={false} foot={foot}>
       <SubHeader headerfixed={false}>
-        <AddLink folder={folderInfo} />
+        <AddLink folder={folderInfo} footView={footView} />
       </SubHeader>
       <Folder
         linkData={linkData}
