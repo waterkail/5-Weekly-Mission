@@ -1,6 +1,17 @@
 import styled from "styled-components";
 import searchIcon from "../asset/Search.svg";
-import { FormEvent, memo, useRef } from "react";
+import close from "../asset/inputclose.png";
+import {
+  ChangeEvent,
+  Dispatch,
+  FormEvent,
+  MouseEvent,
+  RefObject,
+  SetStateAction,
+  memo,
+  useRef,
+  useState,
+} from "react";
 
 const BAR_COLOR = "#f5f5f5";
 const BAR_BORDER_RADIUS = "10px";
@@ -20,13 +31,23 @@ const BarOfSearch = styled.form`
     width: 16px;
     height: 16px;
     margin-right: 10px;
+    align-self: center;
   }
 `;
 const SearchInput = styled.input`
   flex-grow: 1;
   background-color: ${BAR_COLOR};
   border: 0px;
+  height: 24px;
   outline: none;
+`;
+
+const CloseButton = styled.button<{ $hidden: boolean }>`
+  background-image: url(${close});
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  display: ${({ $hidden }) => $hidden && "none"};
 `;
 
 const HiddenButton = styled.button`
@@ -53,26 +74,77 @@ const HiddenLabel = styled.label`
   clip: rect(0 0 0 0);
 `;
 
-const SearchBar = ({ placeholder }: { placeholder?: string }) => {
-  const search = useRef<HTMLInputElement>(null);
+const Div = styled.div`
+  color: #9fa6b2;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.2px;
+  & .searching {
+    color: #373740;
+  }
+`;
+
+const SearchBar = ({
+  placeholder,
+  search,
+  searching,
+  setSearching,
+}: {
+  placeholder?: string;
+  search?: RefObject<HTMLInputElement>;
+  searching: string;
+  setSearching: Dispatch<SetStateAction<string>>;
+}) => {
+  const [hidding, setHidding] = useState<boolean>(true);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const searchingLink = search.current;
-    console.log(searchingLink?.value);
+    const searchingLink = search?.current;
+    if (searchingLink) setSearching(searchingLink?.value);
+  };
+
+  const handleClose = (e: MouseEvent<HTMLButtonElement>) => {
+    setHidding(true);
+    if (search?.current instanceof HTMLInputElement) {
+      search.current.value = "";
+      setSearching(search.current.value);
+    }
+  };
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    if (search?.current?.value !== "") {
+      setHidding(false);
+      return;
+    }
+    setHidding(true);
   };
 
   return (
-    <BarOfSearch onSubmit={handleSubmit}>
-      <HiddenLabel htmlFor="search">검색</HiddenLabel>
-      <SearchInput
-        type="text"
-        id="search"
-        placeholder={placeholder}
-        ref={search}
-      />
-      <HiddenButton type="submit">검색하기</HiddenButton>
-    </BarOfSearch>
+    <>
+      <BarOfSearch onSubmit={handleSubmit}>
+        <HiddenLabel htmlFor="search">검색</HiddenLabel>
+        <SearchInput
+          type="text"
+          id="search"
+          placeholder={placeholder}
+          ref={search}
+          onChange={handleSearch}
+        />
+        <CloseButton
+          $hidden={hidding}
+          onClick={handleClose}
+          type="button"
+        ></CloseButton>
+        <HiddenButton type="submit">검색하기</HiddenButton>
+      </BarOfSearch>
+      {searching && (
+        <Div>
+          <strong className="searching">{searching}</strong> 으로 검색한
+          결과입니다.
+        </Div>
+      )}
+    </>
   );
 };
 

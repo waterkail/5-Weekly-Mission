@@ -2,9 +2,9 @@ import styled from "styled-components";
 import MainContent from "../MainContent";
 import SearchBar from "../SearchBar";
 import FolderBar from "./FolderBar";
-import CardList from "../CardList";
+import CardList, { LinkItem } from "../CardList";
 import { FolderType } from "../../pages/FolderPage";
-import { MouseEvent } from "react";
+import { MouseEvent, useRef, useState } from "react";
 
 const NoLink = styled.div`
   display: flex;
@@ -35,18 +35,36 @@ interface Props {
 }
 
 function Folder({ selectFolder, folderInfo, linkData, selectedFolder }: Props) {
+  const search = useRef<HTMLInputElement>(null);
+  const [searching, setSearching] = useState<string>("");
+  const items = linkData?.data;
+
+  const searchedItems = items?.filter((item: LinkItem) => {
+    if (searching === "" || searching === undefined) return true;
+    return (
+      searching !== undefined &&
+      (item.url?.indexOf(searching) >= 0 ||
+        item.title?.indexOf(searching) >= 0 ||
+        item.description?.indexOf(searching) >= 0)
+    );
+  });
+
   return (
     <>
       <MainContent>
-        <SearchBar />
+        <SearchBar
+          search={search}
+          searching={searching}
+          setSearching={setSearching}
+        />
         <Frame>
           <FolderBar
             folderInfo={folderInfo}
             onClick={selectFolder}
             selectedFolder={selectedFolder}
           />
-          {linkData?.data.length ? (
-            <CardList items={linkData?.data} folder={folderInfo} />
+          {items?.length ? (
+            <CardList items={searchedItems} folder={folderInfo} />
           ) : (
             <NoLink>저장된 링크가 없습니다.</NoLink>
           )}
