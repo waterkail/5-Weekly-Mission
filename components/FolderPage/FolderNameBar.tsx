@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { GRAY2 } from "../color";
+import { GRAY2 } from "@/components/color";
 import Portal from "../../Portal/Portal";
 import { useState } from "react";
 import ModalDeleteFolder from "../Modal/ModalDeleteFolder";
