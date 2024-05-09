@@ -3,7 +3,7 @@ import { GRAY2 } from "../color";
 import shareImg from "../../asset/share.svg";
 import penImg from "../../asset/pen.svg";
 import deleteImg from "../../asset/delete.svg";
-import Portal from "../../Portal/Portal";
+import Portal from "../../../Portal/Portal";
 import { useState } from "react";
 import ModalDeleteFolder from "../Modal/ModalDeleteFolder";
 import ModalEdit from "../Modal/ModalEdit";
