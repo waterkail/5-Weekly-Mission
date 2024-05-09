@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { GRAY2 } from "@/components/color";
 import Portal from "../../Portal/Portal";
 import { useState } from "react";
 import ModalDeleteFolder from "../Modal/ModalDeleteFolder";
@@ -39,7 +38,7 @@ const Tools = styled.div`
 `;
 
 const Tool = styled.button`
-  color: ${GRAY2};
+  color: "#9fa6b2";
   display: flex;
   align-items: center;
   font-family: Pretendard;
