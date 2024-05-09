@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { GRAY2 } from "@/components/color";
 import Portal from "../../Portal/Portal";
 import { useState } from "react";
 import ModalDeleteFolder from "../Modal/ModalDeleteFolder";
 import ModalEdit from "../Modal/ModalEdit";
 import ModalShare from "../Modal/ModalShare";
 import { FolderType } from "../../pages/folder";
+import { GRAY2 } from "../color";
 
 const ICON_MARGIN = "4px";
 const ICON_H_W = "18px";
