@@ -5,6 +5,7 @@ import ModalDeleteFolder from "../Modal/ModalDeleteFolder";
 import ModalEdit from "../Modal/ModalEdit";
 import ModalShare from "../Modal/ModalShare";
 import { FolderType } from "../../pages/folder";
+import { GRAY2 } from "../color";
 
 const ICON_MARGIN = "4px";
 const ICON_H_W = "18px";
@@ -38,7 +39,7 @@ const Tools = styled.div`
 `;
 
 const Tool = styled.button`
-  color: "#9fa6b2";
+  color: ${GRAY2};
   display: flex;
   align-items: center;
   font-family: Pretendard;
