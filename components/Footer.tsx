@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BLACK } from "./color";
+import Image from "next/image";
 
 const YEAR = new Date().getFullYear();
 const ICON_H_W = 20;
@@ -8,7 +9,7 @@ const Hlink = styled.a`
   color: #cfcfcf;
 `;
 
-const LinkImg = styled.img`
+const LinkImg = styled(Image)`
   display: inline-block;
   vertical-align: top;
   width: ${ICON_H_W}px;

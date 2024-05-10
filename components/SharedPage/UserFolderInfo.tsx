@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 
 const Info = styled.div`
@@ -34,7 +35,7 @@ const UserFolderInfo = ({ name, profileImg, folderName }: Props) => {
   return (
     <>
       <Info>
-        <img
+        <Image
           className="Info_Img"
           src={profileImg}
           alt="유저이미지"

@@ -91,7 +91,7 @@ const KebabContainer = styled.div`
   justify-content: space-between;
 `;
 
-const ButtonImgs = styled.img`
+const ButtonImgs = styled(Image)`
   display: inline-block;
   vertical-align: top;
 `;
@@ -236,7 +236,7 @@ function Card({ item, folder }: { item: LinkItem; folder: any }) {
                 width={340}
               />
             ) : (
-              <img
+              <Image
                 className="FolderImage_img"
                 src="/noImage.png"
                 alt=""

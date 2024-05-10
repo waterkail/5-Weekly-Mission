@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { GRAY5 } from "./color";
 import Link from "next/link";
+import Image from "next/image";
 
 const Heading = styled.header<{ $headerFixed: boolean }>`
   position: ${({ $headerFixed }) => ($headerFixed ? "fixed" : "static")};
@@ -95,7 +96,7 @@ const Profile = styled.div`
   }
 `;
 
-const PorfileImage = styled.img`
+const PorfileImage = styled(Image)`
   border-radius: 9999px;
   border: 0px;
 `;
@@ -131,7 +132,7 @@ const Header = ({ isLogIn, email, img, fixed }: HeaderProps) => {
       <HeaderContent>
         <Link href="/">
           <H1Logo>
-            <img
+            <Image
               className="linkbararyLogo"
               src={"/logo.svg"}
               alt="Linkbrary"

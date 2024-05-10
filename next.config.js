@@ -52,6 +52,30 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "ssl.pstatic.net",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "data1.pokemonkorea.co.kr",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "jasonwatmore.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "codeit-images.codeit.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
