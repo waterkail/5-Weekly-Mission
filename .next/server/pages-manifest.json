@@ -3,5 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/shared": "pages/shared.js",
+  "/folder": "pages/folder.js",
   "/": "pages/index.js"
 }

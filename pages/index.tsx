@@ -15,6 +15,7 @@ export default function Home() {
         <Link href="/folder">폴더 페이지</Link>
         <br />
         <Link href="/shared">공유 페이지</Link>
+        <br />
       </main>
     </>
   );

@@ -89,7 +89,7 @@ const SearchBar = ({
   setSearching,
 }: {
   placeholder?: string;
-  search?: RefObject<HTMLInputElement>;
+  search: RefObject<HTMLInputElement>;
   searching: string;
   setSearching: Dispatch<SetStateAction<string>>;
 }) => {
