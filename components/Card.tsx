@@ -228,7 +228,7 @@ function Card({ item, folder }: { item: LinkItem; folder: any }) {
         <a href={url} target="blank">
           <FolderImage>
             {bg ? (
-              <img
+              <Image
                 className="FolderImage_img"
                 src={bg}
                 alt=""
