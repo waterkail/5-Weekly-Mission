@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { MouseEvent, useState } from "react";
 import Portal from "../Portal/Portal";
 import ModalDeleteLink from "./Modal/ModalDeleteLink";
-import ModalAddLink from "./Modal/ModalAddLink";
-import { LinkItem } from "./CardList";
+import ModalAddLink from "./Modal/ModalAddLink/ModalAddLink";
 import Image from "next/image";
+import { CardBase, LinkItem } from "./CardList";
 
 const CardInfo = styled.div`
   display: flex;
@@ -134,7 +134,11 @@ const Button = styled.button`
   }
 `;
 
-function Card({ item, folder }: { item: LinkItem; folder: any }) {
+interface CardProps extends CardBase {
+  item: LinkItem;
+}
+
+function Card({ item, folder, folderPage }: CardProps) {
   const {
     createdAt: cReatedAt,
     created_at,
@@ -222,9 +226,11 @@ function Card({ item, folder }: { item: LinkItem; folder: any }) {
         </PopOver>
       )}
       <Frame>
-        <Star onClick={handleStar} type="button">
-          <ButtonImgs src="/star.svg" alt="즐겨찾기" height={34} width={34} />
-        </Star>
+        {folderPage && (
+          <Star onClick={handleStar} type="button">
+            <ButtonImgs src="/star.svg" alt="즐겨찾기" height={34} width={34} />
+          </Star>
+        )}
         <a href={url} target="blank">
           <FolderImage>
             {bg ? (
@@ -234,6 +240,7 @@ function Card({ item, folder }: { item: LinkItem; folder: any }) {
                 alt=""
                 height={200}
                 width={340}
+                priority={true}
               />
             ) : (
               <Image
@@ -242,13 +249,16 @@ function Card({ item, folder }: { item: LinkItem; folder: any }) {
                 alt=""
                 height={200}
                 width={340}
+                priority={true}
               />
             )}
           </FolderImage>
           <CardInfo>
             <KebabContainer>
               <LongAgo>{longAgo(createdAt || 0)}</LongAgo>
-              <KebabButton type="button" onClick={clickkebab}></KebabButton>
+              {folderPage && (
+                <KebabButton type="button" onClick={clickkebab}></KebabButton>
+              )}
             </KebabContainer>
             <Title>{title}</Title>
             <Info>{description}</Info>
@@ -262,7 +272,7 @@ function Card({ item, folder }: { item: LinkItem; folder: any }) {
         {modalDelLink && (
           <ModalDeleteLink onClick={deleteClick} info={url}></ModalDeleteLink>
         )}
-        {modalAdd && (
+        {modalAdd && folder && (
           <ModalAddLink
             onClick={addClick}
             url={url}

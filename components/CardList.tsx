@@ -27,13 +27,33 @@ export interface LinkItem {
   image_source?: string;
 }
 
-function CardList({ items, folder }: { items: LinkItem[]; folder?: any }) {
+type FolderObject = {
+  data: {
+    id: number;
+    created_at: string;
+    favorite: boolean;
+    link: { count: number };
+    name: string;
+    user_id: number;
+  }[];
+};
+
+export interface CardBase {
+  folder?: FolderObject;
+  folderPage?: boolean;
+}
+
+interface CardListProps extends CardBase {
+  items: LinkItem[];
+}
+
+function CardList({ items, folder, folderPage }: CardListProps) {
   return (
     <CardsList>
       {items?.map((item) => {
         return (
           <li key={item?.id}>
-            <Card item={item} folder={folder} />
+            <Card item={item} folder={folder} folderPage={folderPage} />
           </li>
         );
       })}

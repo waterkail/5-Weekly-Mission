@@ -36,9 +36,10 @@ interface AuthInputProps {
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   id?: string;
   Ref: RefObject<HTMLInputElement>;
+  placeholder?: string;
 }
 
-const AuthInput = ({ type, onBlur, id, Ref }: AuthInputProps) => {
+const AuthInput = ({ type, onBlur, id, Ref, placeholder }: AuthInputProps) => {
   const [hide, setHide] = useState<boolean>(true);
   const [inputType, setInputType] = useState<string>(type);
 
@@ -50,7 +51,13 @@ const AuthInput = ({ type, onBlur, id, Ref }: AuthInputProps) => {
 
   return (
     <Div>
-      <Input id={id} type={inputType} onBlur={onBlur} ref={Ref} />
+      <Input
+        id={id}
+        type={inputType}
+        onBlur={onBlur}
+        ref={Ref}
+        placeholder={placeholder}
+      />
       {type === "password" && (
         <Button type="button" onClick={eyeClick}>
           {hide ? (

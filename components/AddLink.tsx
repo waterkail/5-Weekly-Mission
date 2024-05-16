@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { PRIMARY, WHITE } from "./color";
 import { FormEvent, useRef, useState } from "react";
 import Portal from "../Portal/Portal";
-import ModalAddLink from "./Modal/ModalAddLink";
+import ModalAddLink from "./Modal/ModalAddLink/ModalAddLink";
 import { useInView } from "react-intersection-observer";
 
 const BAR_COLOR = WHITE;

@@ -40,12 +40,11 @@ function Folder({ selectFolder, folderInfo, linkData, selectedFolder }: Props) {
   const items = linkData?.data;
 
   const searchedItems = items?.filter((item: LinkItem) => {
-    if (searching === "" || searching === undefined) return true;
+    if (!searching) return true;
     return (
-      searching !== undefined &&
-      (item.url?.indexOf(searching) >= 0 ||
-        item.title?.indexOf(searching) >= 0 ||
-        item.description?.indexOf(searching) >= 0)
+      item.url?.indexOf(searching) >= 0 ||
+      item.title?.indexOf(searching) >= 0 ||
+      item.description?.indexOf(searching) >= 0
     );
   });
 
@@ -64,7 +63,11 @@ function Folder({ selectFolder, folderInfo, linkData, selectedFolder }: Props) {
             selectedFolder={selectedFolder}
           />
           {items?.length ? (
-            <CardList items={searchedItems} folder={folderInfo} />
+            <CardList
+              items={searchedItems}
+              folder={folderInfo}
+              folderPage={true}
+            />
           ) : (
             <NoLink>저장된 링크가 없습니다.</NoLink>
           )}

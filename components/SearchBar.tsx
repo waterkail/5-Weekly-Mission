@@ -47,16 +47,15 @@ const CloseButton = styled.button<{ $hidden: boolean }>`
   display: ${({ $hidden }) => $hidden && "none"};
 `;
 
-const HiddenButton = styled.button`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  border: 0;
-  clip: rect(0 0 0 0);
+const Div = styled.div`
+  color: #9fa6b2;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.2px;
+  & .searching {
+    color: #373740;
+  }
 `;
 
 const HiddenLabel = styled.label`
@@ -71,15 +70,16 @@ const HiddenLabel = styled.label`
   clip: rect(0 0 0 0);
 `;
 
-const Div = styled.div`
-  color: #9fa6b2;
-  font-size: 32px;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: -0.2px;
-  & .searching {
-    color: #373740;
-  }
+const HiddenButton = styled.button`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+  clip: rect(0 0 0 0);
 `;
 
 const SearchBar = ({
@@ -137,7 +137,7 @@ const SearchBar = ({
       </BarOfSearch>
       {searching && (
         <Div>
-          <strong className="searching">{searching}</strong> 으로 검색한
+          <strong className="searching">'{searching}' </strong> 검색한
           결과입니다.
         </Div>
       )}

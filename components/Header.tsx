@@ -112,6 +112,7 @@ interface HeaderProps extends UserProfileProps {
 }
 
 const UserProfile = ({ email, img }: UserProfileProps) => {
+  if (!img) return;
   return (
     <Profile>
       <PorfileImage
@@ -138,6 +139,7 @@ const Header = ({ isLogIn, email, img, fixed }: HeaderProps) => {
               alt="Linkbrary"
               width={133}
               height={24}
+              priority={true}
             />
           </H1Logo>
         </Link>

@@ -25,6 +25,11 @@ const FolderName = styled.h2`
   line-height: normal;
 `;
 
+const Empty = styled.div`
+  height: 164px;
+  width: 100%;
+`;
+
 interface Props {
   name: string;
   profileImg: string;
@@ -32,6 +37,7 @@ interface Props {
 }
 
 const UserFolderInfo = ({ name, profileImg, folderName }: Props) => {
+  if (!profileImg) return <Empty></Empty>;
   return (
     <>
       <Info>
