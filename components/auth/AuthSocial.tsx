@@ -3,6 +3,25 @@ import { GRAY3, GRAY4 } from "../color";
 import Image from "next/image";
 import Link from "next/link";
 
+const AuthSocial = ({ auth }: { auth: string }) => {
+  return (
+    <Div>
+      {auth === "signin" && <span>소셜 로그인</span>}
+      {auth === "signup" && <span>다른 방식으로 가입하기</span>}
+      <SnsButtons>
+        <GoogleButton href="https://www.google.com">
+          <Image src="/google.png" width={22} height={22} alt=""></Image>
+        </GoogleButton>
+        <KaKaoButton href="https://www.kakaocorp.com/page">
+          <Image src="/KaKaoforAuth.svg" width={26} height={24} alt=""></Image>
+        </KaKaoButton>
+      </SnsButtons>
+    </Div>
+  );
+};
+
+export default AuthSocial;
+
 const Div = styled.div`
   display: flex;
   margin-top: 32px;
@@ -37,22 +56,3 @@ const KaKaoButton = styled(GoogleButton)`
   border: 1px solid #f5e14b;
   background-color: #f5e14b;
 `;
-
-const AuthSocial = ({ auth }: { auth: string }) => {
-  return (
-    <Div>
-      {auth === "signin" && <span>소셜 로그인</span>}
-      {auth === "signup" && <span>다른 방식으로 가입하기</span>}
-      <SnsButtons>
-        <GoogleButton href="https://www.google.com">
-          <Image src="/google.png" width={22} height={22} alt=""></Image>
-        </GoogleButton>
-        <KaKaoButton href="https://www.kakaocorp.com/page">
-          <Image src="/KaKaoforAuth.svg" width={26} height={24} alt=""></Image>
-        </KaKaoButton>
-      </SnsButtons>
-    </Div>
-  );
-};
-
-export default AuthSocial;

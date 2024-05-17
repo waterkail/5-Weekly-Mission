@@ -2,6 +2,32 @@ import styled from "styled-components";
 import { BLACK, GRAY3, GRAY5, PRIMARY, WHITE } from "../color";
 import Link from "next/link";
 import AuthForm from "./AuthForm";
+import { Auth } from "./AuthTypes";
+
+const AuthFormCase = ({ auth }: { auth: Auth }) => {
+  return (
+    <>
+      <Div>
+        <Logo></Logo>
+        {auth === "signin" && (
+          <span>
+            회원이 아니신가요?{" "}
+            <StyledLink href="/signup">회원 가입하기</StyledLink>
+          </span>
+        )}
+        {auth === "signup" && (
+          <span>
+            이미 회원이신가요?
+            <StyledLink href="/signin">로그인 하기</StyledLink>
+          </span>
+        )}
+      </Div>
+      <AuthForm auth={auth}></AuthForm>
+    </>
+  );
+};
+
+export default AuthFormCase;
 
 const Div = styled.div`
   display: flex;
@@ -25,28 +51,3 @@ const StyledLink = styled(Link)`
   color: ${PRIMARY};
   text-decoration: underline;
 `;
-
-const AuthFormCase = ({ auth }: { auth: string }) => {
-  return (
-    <>
-      <Div>
-        <Logo></Logo>
-        {auth === "signin" && (
-          <span>
-            회원이 아니신가요?{" "}
-            <StyledLink href="/signup">회원 가입하기</StyledLink>
-          </span>
-        )}
-        {auth === "signup" && (
-          <span>
-            이미 회원이신가요?
-            <StyledLink href="/signin">로그인 하기</StyledLink>
-          </span>
-        )}
-      </Div>
-      <AuthForm></AuthForm>
-    </>
-  );
-};
-
-export default AuthFormCase;
