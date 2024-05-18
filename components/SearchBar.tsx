@@ -13,6 +13,71 @@ import {
 const BAR_COLOR = "#f5f5f5";
 const BAR_BORDER_RADIUS = "10px";
 
+const SearchBar = ({
+  placeholder,
+  search,
+  searching,
+  setSearching,
+}: {
+  placeholder?: string;
+  search: RefObject<HTMLInputElement>;
+  searching: string;
+  setSearching: Dispatch<SetStateAction<string>>;
+}) => {
+  const [hidding, setHidding] = useState<boolean>(true);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const searchingLink = search?.current;
+    if (searchingLink) setSearching(searchingLink?.value);
+  };
+
+  const handleClose = (e: MouseEvent<HTMLButtonElement>) => {
+    setHidding(true);
+    if (search?.current instanceof HTMLInputElement) {
+      search.current.value = "";
+      setSearching(search.current.value);
+    }
+  };
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    if (search?.current?.value !== "") {
+      setHidding(false);
+      return;
+    }
+    setHidding(true);
+  };
+
+  return (
+    <>
+      <BarOfSearch onSubmit={handleSubmit}>
+        <HiddenLabel htmlFor="search">검색</HiddenLabel>
+        <SearchInput
+          type="text"
+          id="search"
+          placeholder={placeholder}
+          ref={search}
+          onChange={handleSearch}
+        />
+        <CloseButton
+          $hidden={hidding}
+          onClick={handleClose}
+          type="button"
+        ></CloseButton>
+        <HiddenButton type="submit">검색하기</HiddenButton>
+      </BarOfSearch>
+      {searching && (
+        <Div>
+          <strong className="searching">'{searching}' </strong> 검색한
+          결과입니다.
+        </Div>
+      )}
+    </>
+  );
+};
+
+export default memo(SearchBar);
+
 const BarOfSearch = styled.form`
   display: flex;
   padding: 15px 16px;
@@ -81,68 +146,3 @@ const HiddenButton = styled.button`
   border: 0;
   clip: rect(0 0 0 0);
 `;
-
-const SearchBar = ({
-  placeholder,
-  search,
-  searching,
-  setSearching,
-}: {
-  placeholder?: string;
-  search: RefObject<HTMLInputElement>;
-  searching: string;
-  setSearching: Dispatch<SetStateAction<string>>;
-}) => {
-  const [hidding, setHidding] = useState<boolean>(true);
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const searchingLink = search?.current;
-    if (searchingLink) setSearching(searchingLink?.value);
-  };
-
-  const handleClose = (e: MouseEvent<HTMLButtonElement>) => {
-    setHidding(true);
-    if (search?.current instanceof HTMLInputElement) {
-      search.current.value = "";
-      setSearching(search.current.value);
-    }
-  };
-
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    if (search?.current?.value !== "") {
-      setHidding(false);
-      return;
-    }
-    setHidding(true);
-  };
-
-  return (
-    <>
-      <BarOfSearch onSubmit={handleSubmit}>
-        <HiddenLabel htmlFor="search">검색</HiddenLabel>
-        <SearchInput
-          type="text"
-          id="search"
-          placeholder={placeholder}
-          ref={search}
-          onChange={handleSearch}
-        />
-        <CloseButton
-          $hidden={hidding}
-          onClick={handleClose}
-          type="button"
-        ></CloseButton>
-        <HiddenButton type="submit">검색하기</HiddenButton>
-      </BarOfSearch>
-      {searching && (
-        <Div>
-          <strong className="searching">'{searching}' </strong> 검색한
-          결과입니다.
-        </Div>
-      )}
-    </>
-  );
-};
-
-export default memo(SearchBar);

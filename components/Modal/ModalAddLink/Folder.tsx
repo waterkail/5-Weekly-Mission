@@ -2,6 +2,27 @@ import styled from "styled-components";
 import { GRAY5 } from "../../color";
 import { useState } from "react";
 
+const Folder = ({ item }: { item: { [folder: string]: any } }) => {
+  const [clicked, setClicked] = useState(false);
+
+  const handleClick = () => {
+    setClicked(!clicked);
+  };
+  return (
+    <Folderr
+      tabIndex={0}
+      role="button"
+      $clicked={clicked}
+      onClick={handleClick}
+    >
+      <FolderName>{item?.name}</FolderName>
+      <FolderLinks>{item?.link.count}개 링크</FolderLinks>
+    </Folderr>
+  );
+};
+
+export default Folder;
+
 const Folderr = styled.li<{ $clicked: boolean }>`
   display: flex;
   padding: 8px;
@@ -32,24 +53,3 @@ const FolderLinks = styled.span`
   font-size: 14px;
   line-height: normal;
 `;
-
-const Folder = ({ item }: { item: { [folder: string]: any } }) => {
-  const [clicked, setClicked] = useState(false);
-
-  const handleClick = () => {
-    setClicked(!clicked);
-  };
-  return (
-    <Folderr
-      tabIndex={0}
-      role="button"
-      $clicked={clicked}
-      onClick={handleClick}
-    >
-      <FolderName>{item?.name}</FolderName>
-      <FolderLinks>{item?.link.count}개 링크</FolderLinks>
-    </Folderr>
-  );
-};
-
-export default Folder;

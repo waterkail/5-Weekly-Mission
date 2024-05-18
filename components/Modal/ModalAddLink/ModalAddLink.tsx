@@ -4,25 +4,6 @@ import styled from "styled-components";
 import { FolderObject, LinkItem } from "../../CardList";
 import Folder from "./Folder";
 
-const Span = styled.span`
-  color: #9fa6b2;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 22px;
-  margin: 8px 0 24px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const Folders = styled.ul`
-  display: flex;
-  flex-direction: column;
-  row-gap: 4px;
-  margin-bottom: 24px;
-`;
-
 interface AddLinkProps {
   url?: string;
   onClick: (...props: any[]) => void;
@@ -48,3 +29,22 @@ const ModalAddLink = ({ url, onClick, folder }: AddLinkProps) => {
 };
 
 export default ModalAddLink;
+
+const Span = styled.span`
+  color: #9fa6b2;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 8px 0 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const Folders = styled.ul`
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  margin-bottom: 24px;
+`;
