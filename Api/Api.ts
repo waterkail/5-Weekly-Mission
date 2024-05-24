@@ -20,8 +20,8 @@ export async function getUserData() {
   return { name, id, email, profileImageSource };
 }
 
-export async function getFolderData() {
-  const response = await fetch(`${BASE_URL}/sample/folder`, {
+export async function getFolderData(folderId?: string | number) {
+  const response = await fetch(`${BASE_URL}/folders/${folderId}`, {
     method: "GET",
     headers: { accept: `*/*` },
   });
@@ -38,8 +38,8 @@ export async function getUsersData(userId?: string | number) {
   return response.json();
 }
 
-export async function getFoldersData() {
-  const response = await fetch(`${BASE_URL}/users/1/folders`, {
+export async function getFoldersData(userId: string | number = 1) {
+  const response = await fetch(`${BASE_URL}/users/${userId}/folders`, {
     method: "GET",
     headers: { accept: `*/*` },
   });
@@ -47,9 +47,12 @@ export async function getFoldersData() {
   return response.json();
 }
 
-export async function getLinksData(folderId?: string | number) {
+export async function getLinksData(
+  folderId?: string | number,
+  userId: string | number = 1
+) {
   const response = await fetch(
-    `${BASE_URL}/users/1/links?folderId=${folderId}`,
+    `${BASE_URL}/users/${userId}/links?folderId=${folderId}`,
     {
       method: "GET",
       headers: { accept: `*/*` },

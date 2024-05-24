@@ -1,11 +1,11 @@
-import SubHeader from "../components/SubHeader";
-import AddLink from "../components/AddLink";
-import Folder from "../components/FolderPage/Folder";
-import App from "../components/App";
-import { useData } from "../Hooks/useData";
-import { getLinksData, getFoldersData } from "../Api/Api";
+import SubHeader from "../../components/SubHeader";
+import AddLink from "../../components/AddLink";
+import Folder from "../../components/FolderPage/Folder";
+import App from "../../components/App";
+import { useData } from "../../Hooks/useData";
+import { getLinksData, getFoldersData } from "../../Api/Api";
 import { MouseEvent, useCallback, useEffect, useState } from "react";
-import { LinkItem } from "../components/CardList";
+import { LinkItem } from "../../components/CardList";
 import { useInView } from "react-intersection-observer";
 
 interface Item {
