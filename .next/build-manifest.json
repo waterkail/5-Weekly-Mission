@@ -32,10 +32,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/folder.js"
     ],
-    "/shared": [
+    "/signup": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/shared.js"
+      "static/chunks/pages/signup.js"
     ]
   },
   "ampFirstPages": []

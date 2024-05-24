@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Footer from "./Footer";
 import { ReactNode, useCallback, useEffect, useState } from "react";
-import { getUsersData } from "./Api/Api";
+import { getUsersData } from "../Api/Api";
 import { useData } from "../Hooks/useData";
 
 function App({

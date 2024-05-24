@@ -1,5 +1,5 @@
-import { useEffect, useCallback } from "react";
-import { getFolderData } from "../components/Api/Api";
+import { useEffect } from "react";
+import { getFolderData } from "../Api/Api";
 import SubHeader from "../components/SubHeader";
 import Shared from "../components/SharedPage/Shared";
 import { useData } from "../Hooks/useData";
