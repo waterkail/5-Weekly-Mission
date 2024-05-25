@@ -25,7 +25,7 @@ const Folder = ({ item }: { item: Item }) => {
       onClick={handleClick}
     >
       <FolderName>{item?.name}</FolderName>
-      <FolderLinks>{item?.link.count}개 링크</FolderLinks>
+      {/* <FolderLinks>{item?.link.count}개 링크</FolderLinks> */}
     </Folders>
   );
 };

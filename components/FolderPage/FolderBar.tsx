@@ -4,7 +4,7 @@ import FolderNameBar from "@/components/FolderPage/FolderNameBar";
 import { MouseEvent, ReactNode, useState } from "react";
 import Portal from "../../Portal/Portal";
 import ModalAddFolder from "../Modal/ModalAddFolder";
-import { FolderType } from "../../pages/folder/[folderid]";
+import { FolderType } from "../../pages/folder/[[...folderid]]";
 
 const FolderBlock = ({
   itemId,
@@ -72,7 +72,7 @@ function FolderBar({
       <Bar>
         <FolderIndex
           onClick={onClick}
-          items={folderInfo?.data}
+          items={folderInfo}
           selectedId={selectedId}
         />
         <AddFolder type="button" onClick={handleAddFolder}>

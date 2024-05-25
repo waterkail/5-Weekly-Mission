@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 
-type Pram = (number | string | undefined)[];
+type Pram = (number | string | undefined | null)[];
 
-export function useData(asyncFunction: (...pram: Pram) => Promise<any>) {
+export function useData(asyncFunction: (...pram: any) => Promise<any>) {
   const [data, setData] = useState<any>(null);
 
   const getData = useCallback(
